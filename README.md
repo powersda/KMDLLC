@@ -1,6 +1,6 @@
 # 🛡️ KDM LLC 🛡️
 
-![img](https://github.com/powersda/KDMLLC/blob/main/logo/logo.png?raw=true){ style="display: block; margin: 0 auto" }
+![img](https://github.com/powersda/KDMLLC/blob/main/logo/logo.png?raw=true)
 
 CSCI-3060U Project
 
