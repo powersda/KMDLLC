@@ -2,11 +2,11 @@
 
 CSCI-3060U Project
 
-## About
+## ℹ️ About
 
-## Description
+## 🗒️ Description
 
-# Run Project
+# 🏗️ Run Project
 
 ### 1. Clone the project
 
