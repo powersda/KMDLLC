@@ -1,4 +1,4 @@
-# 🛡️ KDM LLC 🛡️
+# 🛡️ KMD LLC 🛡️
 
 ![img](https://github.com/powersda/KDMLLC/blob/main/logo/logo.png?raw=true)
 
