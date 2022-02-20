@@ -1,0 +1,8 @@
+login
+User001
+create
+WalterWhite
+Test9
+PS
+logout
+quit

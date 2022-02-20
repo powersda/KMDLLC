@@ -1,0 +1,10 @@
+login
+User001
+create
+
+Thisisareallylongtest6
+Test7##%!&^
+Test8
+PS
+logout
+quit

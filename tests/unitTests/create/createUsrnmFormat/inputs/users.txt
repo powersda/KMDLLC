@@ -1,0 +1,10 @@
+User001         AA
+HockeyLover22   AA
+VictoriaWashing FS
+PetterWhite     FS
+LEVIONGAB       RS
+ELENOIRVILLA    RS
+22fixer         PS
+WalterWhite     PS
+GordonRamsay    PS
+END               
