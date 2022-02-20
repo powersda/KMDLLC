@@ -1,0 +1,9 @@
+login
+User001
+delete
+BIGLOOOONGNAMETHATDOESNOTEXIST
+
+#$!@@BOB
+DELE1
+logout
+quit
