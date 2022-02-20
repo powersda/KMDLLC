@@ -1,0 +1,7 @@
+login
+User001
+delete
+GordonRamsay
+DELE1
+logout
+quit
