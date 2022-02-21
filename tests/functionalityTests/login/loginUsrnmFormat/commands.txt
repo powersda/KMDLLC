@@ -1,0 +1,10 @@
+login
+THISISAREALLYLOONGUSERNAME
+##~!()@bob
+
+User001
+create
+TestUser4
+PS
+logout
+quit

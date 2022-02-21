@@ -1,0 +1,10 @@
+login
+LEVIONGAB
+login
+ELENOIRVILLA
+rent
+XIQ1J2B4
+2
+yes
+logout
+quit

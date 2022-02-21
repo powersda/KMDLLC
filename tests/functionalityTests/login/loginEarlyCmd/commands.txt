@@ -1,0 +1,16 @@
+User001
+create
+TestUser1
+PS
+logout
+create
+TestUser2
+PS
+logout
+login
+User001
+create
+TestUser3
+PS
+logout
+quit

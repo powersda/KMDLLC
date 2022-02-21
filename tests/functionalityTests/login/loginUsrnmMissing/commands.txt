@@ -1,0 +1,9 @@
+login
+FakeUser
+LEVIONGAB
+rent
+KX35BMB3
+2
+yes
+logout
+quit

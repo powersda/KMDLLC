@@ -1,0 +1,11 @@
+login
+User001
+create
+TestUser6
+PS
+logout
+create
+TestUser7
+PS
+logout
+quit
