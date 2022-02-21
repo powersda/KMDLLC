@@ -1,0 +1,15 @@
+login
+LEVIONGAB
+post
+Ottawa
+133.99
+2
+logout
+login
+WalterWhite
+post
+Toronto
+299.99
+1
+logout
+quit

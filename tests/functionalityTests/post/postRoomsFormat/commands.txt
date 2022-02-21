@@ -1,0 +1,12 @@
+login
+WalterWhite
+post
+Mexico City
+82.00
+two
+0
+22
+
+2
+logout
+quit

@@ -1,0 +1,12 @@
+login
+WalterWhite
+post
+Ottawa
+fifty
+0
+
+22222.00
+105.99
+2
+logout
+quit
