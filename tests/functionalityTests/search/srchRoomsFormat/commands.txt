@@ -1,0 +1,13 @@
+login
+User001
+search
+Paris
+549.99
+s
+$
+0.5
+0
+10
+3
+logout
+quit

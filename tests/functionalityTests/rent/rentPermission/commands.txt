@@ -1,0 +1,15 @@
+login
+22fixer
+rent
+228AVTU6
+3
+yes
+logout
+login
+LEVIONGAB
+rent
+KX35BMB3
+3
+yes
+logout
+quit

@@ -1,0 +1,16 @@
+login
+22fixer
+post
+Montreal
+67.33
+1
+logout
+login
+LEVIONGAB
+rent
+U1S19J45
+KX35BMB3
+3
+yes
+logout
+quit

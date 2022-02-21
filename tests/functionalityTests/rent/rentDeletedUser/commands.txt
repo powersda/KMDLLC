@@ -1,0 +1,14 @@
+login
+User001
+delete
+DELE1
+logout
+login
+LEVIONGAB
+rent
+XIQ1J2B4
+228AVTU6
+3
+yes
+logout
+quit

@@ -1,0 +1,13 @@
+login
+User001
+search
+Paris
+Five
+$
+
+0
+10000
+549.99
+3
+logout
+quit

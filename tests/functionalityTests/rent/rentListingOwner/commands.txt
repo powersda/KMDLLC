@@ -1,0 +1,8 @@
+login
+PetterWhite
+I1N283SX
+OOAS1345
+3
+yes
+logout
+quit

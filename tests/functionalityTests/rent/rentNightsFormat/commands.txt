@@ -1,0 +1,12 @@
+login
+LEVIONGAB
+rent
+KX35BMB3
+0
+20
+$$
+
+2
+yes
+logout
+quit
