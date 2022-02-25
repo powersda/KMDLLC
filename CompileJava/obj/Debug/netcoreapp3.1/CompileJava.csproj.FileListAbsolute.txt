@@ -1,0 +1,14 @@
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.exe
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.deps.json
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.runtimeconfig.json
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.runtimeconfig.dev.json
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.dll
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\bin\Debug\netcoreapp3.1\CompileJava.pdb
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.csproj.AssemblyReference.cache
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.AssemblyInfoInputs.cache
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.AssemblyInfo.cs
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.csproj.CoreCompileInputs.cache
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.dll
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.pdb
+C:\Users\Mathe\Documents\KDMLLC\CompileJava\obj\Debug\netcoreapp3.1\CompileJava.genruntimeconfig.cache
