@@ -2,5 +2,5 @@ javac *.java
 jar -cvmf manifest.mf  ../OT-Bnb.jar *.class
 rm *.class
 
-[ "$1" = '-r' ] && printf '\n' && java -jar ../OT-Bnb.jar ../log ../data/users.txt ../data/listings.txt
+[ "$1" = '-r' ] && printf '\n' && (cd .. && java -jar OT-Bnb.jar)
  
