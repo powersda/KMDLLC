@@ -4,8 +4,30 @@ public class User {
     private final String _username;
     private final UserType _userType;
 
-    public String getUsername() { return _username; }
+    public String getUsername() { 
+        
+        
+        
+        return _username; 
+    }
     public UserType getUserType() { return _userType; }
     public User(String username){ this._username = username; this._userType = UserType.RENT_STANDARD; }
-    public static Boolean isValidUsername(String username) { return true; }
+    public static Boolean isValidUsername(String username) { 
+
+        String validCharacters = "[a-zA-Z]";
+
+
+        if (username.length() > 15 | username.length() < 1){
+            return false; 
+        }
+        else if (username.matches(validCharacters)){
+            return false; 
+        }
+        // else if (getUser(username) != null){
+        //     return false; 
+        // }
+        else{
+            return true; 
+        }
+    }
 }
