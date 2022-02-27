@@ -53,16 +53,16 @@ public class DataAccess {
 
     // Searches the cached listings for listings that match the past city, rental price, and number of rooms, and returns them in a listings array.
     // Parameters passed as "null" operate are equivalent to "any"
-    public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
-        List<Listings> searchResults = new ArrayList<Listing>();
-        for (Listing cachedListing : _cachedListings){
-            if ((city == null? true : cachedListing.getCity() == city) &&
-                (rentalPrice == null? true: cachedListing.getRentalPrice() == rentalPrice) &&
-                (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
-                    searchResults.add(cachedListing);
-        }
-        return cachedListing.values();
-    }
+    // public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
+    //     List<Listings> searchResults = new ArrayList<Listing>();
+    //     for (Listing cachedListing : _cachedListings){
+    //         if ((city == null? true : cachedListing.getCity() == city) &&
+    //             (rentalPrice == null? true: cachedListing.getRentalPrice() == rentalPrice) &&
+    //             (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
+    //                 searchResults.add(cachedListing);
+    //     }
+    //     return cachedListing.values();
+    // }
 
     // Adds a user to the cached users list
     public void addUser (User newUser) { this._cachedUsers.add(newUser); }
