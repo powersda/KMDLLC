@@ -13,7 +13,7 @@ public class Main {
             System.out.print("Please enter one of the following commands: " + (State.Command.getUserPermissions(activeUser)) + ": ");
             try {
                 State newState = null;
-                switch(State.Command.valueOf(inputSource.nextLine().toUpperCase())){
+                switch(State.Command.valueOf(inputSource.nextLine().trim().toUpperCase())){
                     case LOGIN:
                         newState = new Login();
                         break;
