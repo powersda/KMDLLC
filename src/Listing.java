@@ -6,13 +6,13 @@ public class Listing {
     private String _rentalUnitID;
     private final User _owner;
     private final String _city;
-    private final Double _rentalPrice;
-    private final Integer _numberOfRooms;
-    private Boolean _rentedFlag;
-    private Integer _nightsRented;
+    private final double _rentalPrice;
+    private final int _numberOfRooms;
+    private boolean _rentedFlag;
+    private int _nightsRented;
     
     
-    public Listing(String rentalUnitID, User user, String city, Double rentalPrice, Integer numberOfRooms, Boolean rentedFlag, Integer nightsRented) {
+    public Listing(String rentalUnitID, User user, String city, double rentalPrice, int numberOfRooms, boolean rentedFlag, int nightsRented) {
     	this._rentalUnitID = rentalUnitID;
     	this._owner = user;
     	this._city = city;
@@ -25,10 +25,10 @@ public class Listing {
     public String getRentalUnitID() { return _rentalUnitID; }
     public User getOwner() {return _owner;}
     public String getCity() {return _city;}
-    public Double getRentalPrice() {return _rentalPrice;}
-    public Integer getNumberOfRooms() {return _numberOfRooms;}
-    public Boolean isRented() {return _rentedFlag;}
-    public Integer getNightsRented() {return _nightsRented;}
+    public double getRentalPrice() {return _rentalPrice;}
+    public int  getNumberOfRooms() {return _numberOfRooms;}
+    public boolean isRented() {return _rentedFlag;}
+    public int getNightsRented() {return _nightsRented;}
     
     //Checks if unitRentalID is 8 characters and alpha numeric using regex.
     /**
@@ -36,7 +36,7 @@ public class Listing {
      * @return True
      * @return False
      */
-    public static Boolean isValidRentalID(String unitID) {
+    public static boolean isValidRentalID(String unitID) {
     	if(unitID.length() != 8) {
     		return false;
     	}
@@ -55,7 +55,7 @@ public class Listing {
      * @return false
      * @return true
      */
-    public static Boolean isValidCity(String city) {
+    public static boolean isValidCity(String city) {
     	if((city.length() < 1) || (city.length() > 25)) {
     		return false;
     	}
@@ -75,7 +75,7 @@ public class Listing {
      * @return true
      * @return false
      */
-    public static Boolean isValidRentalPrice(Double rentalPrice) {
+    public static boolean isValidRentalPrice(double rentalPrice) {
     	if((rentalPrice < 1) || (rentalPrice > 999.99)) {
     		return false;
     	}
@@ -92,7 +92,7 @@ public class Listing {
      * @return true
      * @return false
      */
-    public static Boolean isValidNumberofRooms(Integer numberOfRooms) {
+    public static boolean isValidNumberofRooms(int numberOfRooms) {
     	if((numberOfRooms < 1) || (numberOfRooms > 9)) {
     		return false;
     	}
@@ -109,7 +109,7 @@ public class Listing {
      * @return true
      * @return false
      */
-    public static Boolean isValidNightsRented(Integer nightsRented) {
+    public static boolean isValidNightsRented(int nightsRented) {
     	if((nightsRented < 1) || (nightsRented > 14)) {
     		return false;
     	}
@@ -120,8 +120,8 @@ public class Listing {
     
     // For testing purposes
     public String toString() {
-    	return "Unit ID: " + _rentalUnitID + "\nUser: " + _owner.toString() +
-    			"\nCity: " + _city + "\nPrice: " + _rentalPrice.toString() +
-    			"\nRooms: " + _numberOfRooms.toString() + "\nRented: " + _rentedFlag.toString() + "\nNights: " + _nightsRented.toString();
+    	return "Unit ID: " + _rentalUnitID + "\nUser: " + String.valueOf(_owner) +
+    			"\nCity: " + _city + "\nPrice: " + String.valueOf(_rentalPrice) +
+    			"\nRooms: " + String.valueOf(_numberOfRooms) + "\nRented: " + String.valueOf(_rentedFlag) + "\nNights: " + String.valueOf(_nightsRented);
     }
 }
