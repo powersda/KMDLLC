@@ -2,6 +2,8 @@
  * @author KMDLLC
  *
  */
+import java.util.UUID; 
+
 public class Listing {
     private String _rentalUnitID;
     private final User _owner;
@@ -11,7 +13,45 @@ public class Listing {
     private boolean _rentedFlag;
     private int _nightsRented;
     
+    //create new Listing
+    /**
+     * @param dataAccess
+     * @param user
+     * @param city
+     * @param rentalPrice
+     * @param numberOfRooms
+     */
+    public Listing(DataAccess dataAccess, User user, String city, double rentalPrice, int numberOfRooms) {
+    	//will check if unique once dataAccess complete
+    	boolean flag = true;
+    	String generatedID;
+    	while(flag) {
+    		generatedID = generateUnitID();
+    		if(!(dataAccess.listingExists(generatedID))) {
+    			this._rentalUnitID = generatedID;
+    			flag = false;
+    		}
+    	}
+    	
+    	this._owner = user;
+    	this._city = city;
+    	this._rentalPrice = rentalPrice;
+    	this._numberOfRooms = numberOfRooms;
+    	this._rentedFlag = false;
+    	this._nightsRented = 0;
+    }
     
+    
+    //instantiate listing objects
+    /**
+     * @param rentalUnitID
+     * @param user
+     * @param city
+     * @param rentalPrice
+     * @param numberOfRooms
+     * @param rentedFlag
+     * @param nightsRented
+     */
     public Listing(String rentalUnitID, User user, String city, double rentalPrice, int numberOfRooms, boolean rentedFlag, int nightsRented) {
     	this._rentalUnitID = rentalUnitID;
     	this._owner = user;
@@ -29,6 +69,8 @@ public class Listing {
     public int  getNumberOfRooms() {return _numberOfRooms;}
     public boolean isRented() {return _rentedFlag;}
     public int getNightsRented() {return _nightsRented;}
+    
+    
     
     //Checks if unitRentalID is 8 characters and alpha numeric using regex.
     /**
@@ -116,6 +158,16 @@ public class Listing {
     	else {
     		return true;
     	}
+    }
+    
+    //Creates a randomly Generated alphanumeric ID of 8 strings
+    /**
+     * @return generated ID string
+     */
+    private String generateUnitID() {
+    	UUID randomUUID = UUID.randomUUID(); 
+    	String generatedString = randomUUID.toString().replaceAll("-", "");
+    	return generatedString.substring(0, 8);
     }
     
     // For testing purposes

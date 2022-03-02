@@ -71,7 +71,7 @@ public class User {
         else if (username.length() > 15 || username.length() < 1){
             return false; 
         }
-        else if (!username.matches("[A-Za-z]+")){
+        else if (!username.matches("^[a-zA-Z0-9]*$")){
             return false; 
         }
         else{
