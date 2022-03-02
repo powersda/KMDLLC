@@ -9,9 +9,9 @@ public class User {
                 return UserType.ADMIN;
             else if (shortUserType.equals("FS"))
                 return UserType.FULL_STANDARD;
-            else if (shortUserType.equals("BS"))
+            else if (shortUserType.equals("RS"))
                 return UserType.RENT_STANDARD;
-            else if (shortUserType.equals("SS"))
+            else if (shortUserType.equals("PS"))
                 return UserType.POST_STANDARD;
             else
                 return null;
