@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataAccess {
@@ -34,35 +35,41 @@ public class DataAccess {
 
     // Search for a cached user by username. Returns User object if found, null otherwise.
     public User getUser (String username) {
-        for (User cachedUser : _cachedUsers){
-            if (username.equals(cachedUser.getUsername()))
-                return cachedUser;
+        if (_cachedUsers != null && !_cachedUsers.isEmpty()) {
+            for (User cachedUser : _cachedUsers){
+                if (username.equals(cachedUser.getUsername()))
+                    return cachedUser;
+            }
         }
-        // return null;
-        return new User("David"); //DEBUG
+        return null;
     }
 
     // Search for a cached listing by rental unit ID. Returns listing object if found, null otherwise.
     public Listing getListing (String rentalUnitID) {
-        for (Listing cachedListing : _cachedListings){
-            if (rentalUnitID.equals(cachedListing.getRentalUnitID()))
-                return cachedListing;
+        if (_cachedListings != null && !_cachedListings.isEmpty()) {
+            for (Listing cachedListing : _cachedListings){
+                if (rentalUnitID.equals(cachedListing.getRentalUnitID()))
+                    return cachedListing;
+            }
         }
         return null;
     }
 
     // Searches the cached listings for listings that match the past city, rental price, and number of rooms, and returns them in a listings array.
     // Parameters passed as "null" operate are equivalent to "any"
-    // public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
-    //     List<Listings> searchResults = new ArrayList<Listing>();
-    //     for (Listing cachedListing : _cachedListings){
-    //         if ((city == null? true : cachedListing.getCity() == city) &&
-    //             (rentalPrice == null? true: cachedListing.getRentalPrice() == rentalPrice) &&
-    //             (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
-    //                 searchResults.add(cachedListing);
-    //     }
-    //     return cachedListing.values();
-    // }
+    public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
+        if (_cachedListings == null || _cachedListings.isEmpty())
+            return null;
+
+        List<Listing> searchResults = new ArrayList<Listing>();
+        for (Listing cachedListing : _cachedListings){
+            if ((city == null? true : cachedListing.getCity() == city) &&
+                (rentalPrice == null? true : cachedListing.getRentalPrice() == rentalPrice) &&
+                (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
+                    searchResults.add(cachedListing);
+        }
+        return searchResults.toArray(new Listing[searchResults.size()]);
+    }
 
     // Adds a user to the cached users list
     public void addUser (User newUser) { this._cachedUsers.add(newUser); }
@@ -91,7 +98,7 @@ public class DataAccess {
         Scanner reader = new Scanner(users);
         while (reader.hasNextLine()){
             String data = reader.nextLine();
-            // _users.add(new User(data.substring(0, 15).trim(), User.UserType.fromString(data.substring(16, 18))));
+             _cachedUsers.add(new User(data.substring(0, 15).trim(), User.UserType.fromString(data.substring(16, 18))));
         }
         reader.close();
     }
@@ -102,14 +109,14 @@ public class DataAccess {
         Scanner reader = new Scanner(listings);
         while (reader.hasNextLine()){
             String data = reader.nextLine();
-            // _listings.add(new Listing(  data.substring(0, 8), //Listing ID 
-            //                             new User(data.substring(9, 25).trim(), getUser(data.substring(9, 25)).getUserType()), //Owner ID
-            //                             data.substring(26, 52).trim(), // City
-            //                             (int) data.substring(53, 54).trim(), //Number of Rooms
-            //                             (double) data.substring(55, 61), // Price per Night
-            //                             (boolean) data.subtring(62, 63), // rental flag
-            //                             (int) data.substring(64) // Number of nights remaining
-            // ));
+            _cachedListings.add(new Listing( data.substring(0, 8), //Listing ID
+                                             getUser(data.substring(9, 25).trim()), //User ID of owner
+                                             data.substring(26, 52).trim(), // City
+                                             Double.parseDouble(data.substring(55, 61)), // Price per Night
+                                             Integer.parseInt(data.substring(53, 54).trim()), //Number of Rooms
+                                             (data.substring(62, 63).equals("T") ? true : false), // rental flag
+                                             Integer.parseInt(data.substring(64)) // Number of nights remaining
+            ));
 
         }
         reader.close();
