@@ -4,14 +4,14 @@ public class User {
 
         // Takes short-hand user type string and retuns UserType  
 
-        public UserType fromString(String shortUserType){
-            if (shortUserType == "AA")
+        public static UserType fromString(String shortUserType){
+            if (shortUserType.equals("AA"))
                 return UserType.ADMIN;
-            else if (shortUserType == "FS")
+            else if (shortUserType.equals("FS"))
                 return UserType.FULL_STANDARD;
-            else if (shortUserType == "BS")
+            else if (shortUserType.equals("BS"))
                 return UserType.RENT_STANDARD;
-            else if (shortUserType == "SS")
+            else if (shortUserType.equals("SS"))
                 return UserType.POST_STANDARD;
             else
                 return null;
@@ -19,14 +19,14 @@ public class User {
 
         // Checks if a string is a valid user type
 
-        public boolean isValidUserType(String userType){
-            if (userType == "ADMIN")
+        public static boolean isValidUserType(String userType){
+            if (userType.equals("ADMIN"))
                 return true;
-            else if (userType == "FULL_STANDARD")
+            else if (userType.equals("FULL_STANDARD"))
                 return true;
-            else if (userType == "RENT_STANDARD")
+            else if (userType.equals("RENT_STANDARD"))
                 return true;
-            else if (userType == "POST_STANDARD")
+            else if (userType.equals("POST_STANDARD"))
                 return true;
             else
                 return false;
@@ -68,7 +68,7 @@ public class User {
         if (username == null){
             return false; 
         }
-        else if (username.length() > 15 | username.length() < 1){
+        else if (username.length() > 15 || username.length() < 1){
             return false; 
         }
         else if (!username.matches("[A-Za-z]+")){
