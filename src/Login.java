@@ -44,9 +44,6 @@ public class Login extends State {
                 System.out.println("Unable to load listings.txt file!");
                 return activeUser;
             }
-            catch (Exception e) {
-                System.out.print(e.getMessage());
-            }
         }
 
         // activeUser = dbHandle.getUser(input);

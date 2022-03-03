@@ -6,7 +6,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataAccess {
-    // private static DataAccess instance = new DataAccess();
+
+    private final List<User> _cachedUsers;
+    private final List<Listing> _cachedListings;
+    private final List<Log> _sessionLogs;
+    private final List<Listing> _newListings;
+    private final String _usersLocation;
+    private final String _listingsLocation;
+    private final String _transactionFileLocation;
+    private boolean _listingsAreLoaded;
+    private boolean _usersAreLoaded;
+
     public DataAccess() {
         this("log/", "data/users.txt", "data/listings.txt");
     }
@@ -16,26 +26,17 @@ public class DataAccess {
         this._cachedListings = new ArrayList<Listing>();
         this._sessionLogs = new ArrayList<Log>();
         this._newListings = new ArrayList<Listing>();
+        _listingsAreLoaded = false;
+        _usersAreLoaded = false;
 
         this._usersLocation = usersFile;
         this._listingsLocation = listingFile;
         this._transactionFileLocation = transactionFile;
     }
 
-    private final List<User> _cachedUsers;
-    private final List<Listing> _cachedListings;
-    private final List<Log> _sessionLogs;
-    private final List<Listing> _newListings;
-    private final String _usersLocation;
-    private final String _listingsLocation;
-    private final String _transactionFileLocation;
-
-    // Singleton class: use this to get an instance
-    // public static DataAccess getInstance() { return instance; }
-
     // Search for a cached user by username. Returns User object if found, null otherwise.
     public User getUser (String username) {
-        if (_cachedUsers != null && !_cachedUsers.isEmpty() && username != null) {
+        if (!_cachedUsers.isEmpty() && username != null) {
             for (User cachedUser : _cachedUsers){
                 if (username.equals(cachedUser.getUsername()))
                     return cachedUser;
@@ -46,7 +47,7 @@ public class DataAccess {
 
     // Search for a cached listing by rental unit ID. Returns listing object if found, null otherwise.
     public Listing getListing (String rentalUnitID) {
-        if (_cachedListings != null && !_cachedListings.isEmpty() && rentalUnitID != null) {
+        if (!_cachedListings.isEmpty() && rentalUnitID != null) {
             for (Listing cachedListing : _cachedListings){
                 if (rentalUnitID.equals(cachedListing.getRentalUnitID()))
                     return cachedListing;
@@ -55,11 +56,23 @@ public class DataAccess {
         return null;
     }
 
+    // Searches for all cached listings by owner. Returns a list of listings objects associatd with that user.
+    public Listing[] getListing (User user) {
+        List<Listing> searchResults = new ArrayList<Listing>();
+        if (!_cachedListings.isEmpty() && user != null) {
+            for (Listing cachedListing : _cachedListings){
+                if (user == cachedListing.getOwner())
+                    searchResults.add(cachedListing);
+            }
+        }
+        return searchResults.toArray(new Listing[searchResults.size()]);
+    }
+
     // Searches the cached listings for listings that match the past city, rental price, and number of rooms, and returns them in a listings array.
     // Parameters passed as "null" operate are equivalent to "any"
     public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
         List<Listing> searchResults = new ArrayList<Listing>();
-        if (_cachedListings != null && !_cachedListings.isEmpty()) {
+        if (!_cachedListings.isEmpty()) {
             for (Listing cachedListing : _cachedListings){
                 if ((city == null? true : cachedListing.getCity().equals(city)) &&
                     (rentalPrice == null? true : cachedListing.getRentalPrice() == rentalPrice) &&
@@ -85,9 +98,16 @@ public class DataAccess {
     // Adds a log to the current session's log queue
     public void addLog (Log newLog) { this._sessionLogs.add(newLog); }
 
+    // Removes passed User object from the cached users list
     public void removeUser(User user) {
         if (user != null)
             this._cachedUsers.remove(user);
+    }
+
+    // Removes passed Listing object from the cached listing list
+    public void removeListing(Listing listing) {
+        if (listing != null)
+            this._cachedListings.remove(listing);
     }
 
     // Adds this session's newly created listings to the cached listing list
@@ -100,10 +120,10 @@ public class DataAccess {
     public boolean userExists(String username) { return this.getUser(username) != null; }
 
     // Returns true if the cached users list isn't empty (indicating the cache was already initialized), otherwise returns false
-    public boolean isUsersLoaded() { return !_cachedUsers.isEmpty(); }
+    public boolean isUsersLoaded() { return _usersAreLoaded; }
 
     // Returns true if the cached listings list isn't empty (indicating the cache was already initialized), otherwise returns false
-    public boolean isListingsLoaded() { return !_cachedListings.isEmpty(); }
+    public boolean isListingsLoaded() { return _listingsAreLoaded; }
 
     // Reads the users.txt file and creates User objects from the contents, loading them into the cached users list
     public void loadUsers() throws FileNotFoundException{
@@ -114,6 +134,7 @@ public class DataAccess {
              _cachedUsers.add(new User(data.substring(0, 15).trim(), User.UserType.fromString(data.substring(16, 18))));
         }
         reader.close();
+        _usersAreLoaded = true;
     }
 
     // Reads the listings.txt file and creates Listing objects from the contents, loading them into the cached listings list
@@ -134,6 +155,7 @@ public class DataAccess {
 
         }
         reader.close();
+        _listingsAreLoaded = true;
     }
 
 
