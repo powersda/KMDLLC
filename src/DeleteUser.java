@@ -22,7 +22,7 @@ public class DeleteUser extends State {
                 if (dbHandle.userOpenRentals(input))
                     throw new IllegalArgumentException("User has an open rental.");
 
-                dbHandle.removeUser(input)
+                //dbHandle.removeUser(input);
             }
             catch (IllegalArgumentException exception){
                 System.out.println(exception.getMessage());
