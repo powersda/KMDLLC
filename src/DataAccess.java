@@ -55,6 +55,18 @@ public class DataAccess {
         return null;
     }
 
+     // Search if a user has any open rentals, else return false 
+    public boolean userOpenRentals (String username) {
+        if (_cachedListings != null && !_cachedListings.isEmpty()) {
+            for (Listing cachedListing : _cachedListings){
+                if (username.equals(cachedListing.getOwner().getUsername()))
+                    if (cachedListing.isRented())
+                        return true;
+            }
+        }
+        return false;
+    }
+
     // Searches the cached listings for listings that match the past city, rental price, and number of rooms, and returns them in a listings array.
     // Parameters passed as "null" operate are equivalent to "any"
     public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
