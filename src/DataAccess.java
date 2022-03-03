@@ -61,7 +61,7 @@ public class DataAccess {
         List<Listing> searchResults = new ArrayList<Listing>();
         if (_cachedListings != null && !_cachedListings.isEmpty()) {
             for (Listing cachedListing : _cachedListings){
-                if ((city == null? true : cachedListing.getCity() == city) &&
+                if ((city == null? true : cachedListing.getCity().equals(city)) &&
                     (rentalPrice == null? true : cachedListing.getRentalPrice() == rentalPrice) &&
                     (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
                         searchResults.add(cachedListing);
