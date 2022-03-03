@@ -9,7 +9,7 @@ public class Login extends State {
                 throw new SecurityException("Please log out before using the \"" + State.Command.LOGIN + "\" command!");
 
         // Load users.txt db
-        if (!dbHandle.isLoaded()) {
+        if (!dbHandle.isUsersLoaded()) {
             try {
                 dbHandle.loadUsers();
             }
@@ -36,13 +36,16 @@ public class Login extends State {
             }
         }
 
-        if (!dbHandle.isLoaded()) {
+        if (!dbHandle.isListingsLoaded()) {
             try {
                 dbHandle.loadListings();
             }
             catch (FileNotFoundException exception) {
                 System.out.println("Unable to load listings.txt file!");
                 return activeUser;
+            }
+            catch (Exception e) {
+                System.out.print(e.getMessage());
             }
         }
 
