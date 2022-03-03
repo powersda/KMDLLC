@@ -11,8 +11,8 @@ public class SearchListing extends State {
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
     	String city = null; 
     	String input;
-        Double rentalPrice = 0;
-        Integer numberOfRooms = 0;
+        Double rentalPrice = null;
+        Integer numberOfRooms = null;
     	// flags for input checking loops
     	boolean cityFlag = true;
     	boolean rentalPriceFlag = true;
@@ -125,7 +125,7 @@ public class SearchListing extends State {
         //print results
         try {
         	listings = dbHandle.searchListings(city, rentalPrice, numberOfRooms);
-        	//Check if searchlistings couldn't find anything.
+        	//Check if search listings couldn't find anything.
             if(listings.length == 0) {
             	System.out.println("No Results Found."); 
             }
