@@ -31,3 +31,19 @@ public class DeleteUser extends State {
         //return activeUser;
     }
 }
+
+
+
+
+
+// Search if a user has any open rentals, else return false
+    // public boolean userOpenRentals (String username) {
+    //     if (_cachedListings != null && !_cachedListings.isEmpty()) {
+    //         for (Listing cachedListing : _cachedListings){
+    //             if (username.equals(cachedListing.getOwner().getUsername()))
+    //                 if (cachedListing.isRented())
+    //                     return true;
+    //         }
+    //     }
+    //     return false;
+    // }
