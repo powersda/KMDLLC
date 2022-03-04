@@ -9,6 +9,7 @@ public class Logout extends State {
 
     
         // Write transaction file & clear logs
+        dbHandle.writeDailyTransactionFile();
         dbHandle.commitNewListings();
         System.out.println("\nGoodbye!\n");
         State.showBanner();

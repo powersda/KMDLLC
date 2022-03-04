@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Data;
+import java.text.DateFormat;
 
 public class DataAccess {
 
@@ -165,7 +167,10 @@ public class DataAccess {
 
     // If a daily transaction file does not exist for today, creates it, otherwise opens it then write the contents of the session log to it, then clears the session log.
     public void writeDailyTransactionFile() {
-        //TODO
+        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dddd");
+        // File transactionFile = _transactionFileLocation + dateFormat.format(new Date());
+        // System.out.println("Writing to file:" + transactionFile.getName());
+
     }
     
 
