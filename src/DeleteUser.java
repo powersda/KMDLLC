@@ -6,7 +6,7 @@ public class DeleteUser extends State {
 
         if (!Command.DELETE.validateUser(activeUser))
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
-
+        
 
         System.out.println("DEBUG: Running Delete...");
         while(true) {
@@ -19,7 +19,10 @@ public class DeleteUser extends State {
                     throw new IllegalArgumentException("Invalid username format.");
                 if (dbHandle.getUser(input).equals(activeUser.getUsername()))
                     throw new IllegalArgumentException("You cannot delete yourself.");
-                
+                if (dbHandle.userOpenRentals(input))
+                    throw new IllegalArgumentException("User has an open rental.");
+
+                //dbHandle.removeUser(input);
             }
             catch (IllegalArgumentException exception){
                 System.out.println(exception.getMessage());
