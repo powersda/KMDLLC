@@ -131,6 +131,8 @@ public class DataAccess {
         Scanner reader = new Scanner(users);
         while (reader.hasNextLine()){
             String data = reader.nextLine();
+            if (data.equals("END"))
+                break;
              _cachedUsers.add(new User(data.substring(0, 15).trim(), User.UserType.fromString(data.substring(16, 18))));
         }
         reader.close();
@@ -144,6 +146,8 @@ public class DataAccess {
         Scanner reader = new Scanner(listings);
         while (reader.hasNextLine()){
             String data = reader.nextLine();
+            if (data.equals("END"))
+                break;
             _cachedListings.add(new Listing( data.substring(0, 8), //Listing ID
                                              getUser(data.substring(9, 24).trim()), //User ID of owner
                                              data.substring(25, 50).trim(), // City

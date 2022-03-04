@@ -7,16 +7,50 @@ public class Log {
         public String toString() { return _code; }
     }
 
-    //To do: object deep copy
-    private final String _transactionString;
+    private final TransactionCode _transactionCode;
+    private final String _username;
+    private final User.UserType _userType;
+    private final String _rentalUnitID;
+    private final String _city;
+    private final int _numberOfRooms;
+    private final double _rentalPrice;
+    private final int _nightsRented;
 
     public Log(TransactionCode code, User user) {
        this(code, user, null);
     }
 
     public Log(TransactionCode code, User user, Listing listing) {
-        this._transactionString = "TEMP";
+        if (code == null || user == null)
+            throw new IllegalArgumentException();
+
+        this._transactionCode = code;
+        this._username = user.getUsername();
+        this._userType = user.getUserType();
+
+        if (listing != null) {
+            this._rentalUnitID = listing.getRentalUnitID();
+            this._city = listing.getCity();
+            this._numberOfRooms = listing.getNumberOfRooms();
+            this._rentalPrice = listing.getRentalPrice();
+            this.nightsRented = listing.getNightsRented();
+        }
+        else {
+            this._rentalUnitID = "";
+            this._city = "";
+            this._numberOfBedrooms = 0;
+            this._pricePerNight = 0;
+            this._numberOfNights = 0;
+        }
     }
-    
-    public String toString() { return _transactionString; }
+
+    public TransactionCode getTransactionCode() { return _transactionCode; }
+    public String getUsername() { return _username; }
+    public User.UserType getUserType() { return _userType; }
+    public String getRentalUnitID() { return _rentalUnitID; }
+    public String getCity() { return _city; }
+    public int getNumberOfRooms() { return _numberOfRooms; }
+    public double getRentalPrice() { return _rentalPrice; }
+    public int getNightsRented() { return _nightsRented; }
 }
+    

@@ -9,12 +9,13 @@ public class User {
         // System.out.println(Arrays.toString(User.UserType.values()));
             
         // Takes short-hand user type string and retuns UserType  
-        public static UserType fromString(String shortUserType){
+        public static UserType fromString(String input){
             for (UserType element : UserType.values()){
-                if (element.toString().equals(shortUserType))
+                if (element.toString().equals(input))
                     return element;
             }
             return null;
+
             // if (shortUserType.equals("AA"))
             //     return UserType.ADMIN;
             // else if (shortUserType.equals("FS"))
@@ -29,18 +30,18 @@ public class User {
 
         // Takes long form user type string and retuns UserType  
 
-        public static UserType fromStringUserType(String shortUserType){
-            if (shortUserType.equals("ADMIN"))
-                return UserType.ADMIN;
-            else if (shortUserType.equals("FULL_STANDARD"))
-                return UserType.FULL_STANDARD;
-            else if (shortUserType.equals("RENT_STANDARD"))
-                return UserType.RENT_STANDARD;
-            else if (shortUserType.equals("POST_STANDARD"))
-                return UserType.POST_STANDARD;
-            else
-                return null;
-        }
+        // public static UserType fromStringUserType(String shortUserType){
+        //     if (shortUserType.equals("ADMIN"))
+        //         return UserType.ADMIN;
+        //     else if (shortUserType.equals("FULL_STANDARD"))
+        //         return UserType.FULL_STANDARD;
+        //     else if (shortUserType.equals("RENT_STANDARD"))
+        //         return UserType.RENT_STANDARD;
+        //     else if (shortUserType.equals("POST_STANDARD"))
+        //         return UserType.POST_STANDARD;
+        //     else
+        //         return null;
+        // }
 
         // Checks if a string is a valid user type
         // public static boolean isValidUserType(String userType){
