@@ -33,14 +33,14 @@ public class Log {
             this._city = listing.getCity();
             this._numberOfRooms = listing.getNumberOfRooms();
             this._rentalPrice = listing.getRentalPrice();
-            this.nightsRented = listing.getNightsRented();
+            this._nightsRented = listing.getNightsRented();
         }
         else {
             this._rentalUnitID = "";
             this._city = "";
-            this._numberOfBedrooms = 0;
-            this._pricePerNight = 0;
-            this._numberOfNights = 0;
+            this._numberOfRooms = 0;
+            this._rentalPrice = 0;
+            this._nightsRented = 0;
         }
     }
 
