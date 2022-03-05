@@ -70,7 +70,13 @@ public class Listing {
     public boolean isRented() {return _rentedFlag;}
     public int getNightsRented() {return _nightsRented;}
     
+    public void setRentedFlag(boolean value) {
+    	this._rentedFlag = value;
+    }
     
+    public void setNightsRented(int value) {
+    	this._nightsRented = value;
+    }
     
     //Checks if unitRentalID is 8 characters and alpha numeric using regex.
     /**
@@ -79,14 +85,11 @@ public class Listing {
      * @return False
      */
     public static boolean isValidRentalID(String unitID) {
-    	if(unitID.length() != 8) {
-    		return false;
-    	}
-    	else if (!unitID.matches("^[a-zA-Z0-9]*$")) {
-    		return false;
+    	if((unitID.length() == 8) && (unitID.matches("^[a-zA-Z0-9]*$"))) {
+    		return true;
     	}
     	else {
-    		return true;
+    		return false;
     	}
     }
     

@@ -8,6 +8,9 @@ public class SearchListing extends State {
     /**
      *
      */
+	// TODO: ADD TRANSACTION LOG and IN LISTINGS DISPLAY, DISPLAY ONLY ITEMS WHICH HAVE RENTED FLAG == FALSE;
+	// TODO: TEST.
+	
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
     	String city = null; 
     	String input;
