@@ -1,7 +1,9 @@
+/*******************************
+* Class: CreateUser
+* Description: Allows for the creation of new users
+********************************/
 import java.io.*;
 import java.util.*;
-
-
 
 public class CreateUser extends State {
 

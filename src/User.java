@@ -1,3 +1,7 @@
+/*******************************
+* Class: DeleteUser
+* Description: Extends the State class for use with checking validity and setting usernames and usertypes
+********************************/
 public class User {
     public enum UserType { 
         ADMIN("AA"), FULL_STANDARD("FS"), RENT_STANDARD("RS"), POST_STANDARD("PS");

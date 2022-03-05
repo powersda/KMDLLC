@@ -1,3 +1,7 @@
+/*******************************
+* Class: DeleteUser
+* Description: Extends the State class to allow for the deletion of users along with their posts
+********************************/
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
