@@ -27,15 +27,16 @@ public class RentListing extends State {
         		else if(dbHandle.listingExists(input)){
         			listing = dbHandle.getListing(input);
         			if(listing.isRented()) {
-            			//not complete kick user out of rent listing menu
-        				System.out.print("\nListing is not available for rental. Try another.");
+        				listingIDFlag = NightsFlag = confirmationFlag = false;
+        				System.out.print("\nListing is currently rented. Returning to main menu.\n");
         			}
         			else {
         				listingIDFlag = false;
         			}
         		}
         		else {
-        			System.out.print("\nListing id not found");
+        			listingIDFlag = NightsFlag = confirmationFlag = false;
+        			System.out.print("\nListing id not found. Returning to main menu.\n");
         		}
         	}
         	catch(Exception e) {
