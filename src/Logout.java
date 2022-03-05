@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Logout extends State {
 
@@ -9,8 +10,16 @@ public class Logout extends State {
 
     
         // Write transaction file & clear logs
-        dbHandle.writeDailyTransactionFile();
-        dbHandle.commitNewListings();
+        dbHandle.addLog(new Log(Log.TransactionCode.END_OF_SESSION, activeUser));
+
+        try {
+            dbHandle.writeDailyTransactionFile();
+            dbHandle.commitNewListings();
+        }
+        catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+
         System.out.println("\nGoodbye!\n");
         State.showBanner();
         return null;

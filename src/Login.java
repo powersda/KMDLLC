@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Login extends State {
@@ -13,8 +13,8 @@ public class Login extends State {
             try {
                 dbHandle.loadUsers();
             }
-            catch (FileNotFoundException exception) {
-                System.out.println("Unable to load users.txt file!");
+            catch (IOException exception) {
+                System.out.println(exception.getMessage());
                 return activeUser;
             }
         }
@@ -40,8 +40,8 @@ public class Login extends State {
             try {
                 dbHandle.loadListings();
             }
-            catch (FileNotFoundException exception) {
-                System.out.println("Unable to load listings.txt file!");
+            catch (IOException exception) {
+                System.out.println(exception.getMessage());
                 return activeUser;
             }
         }

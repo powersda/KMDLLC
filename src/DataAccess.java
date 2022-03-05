@@ -1,11 +1,14 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Date;
-import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.text.DecimalFormat;
 
 public class DataAccess {
 
@@ -59,7 +62,7 @@ public class DataAccess {
     }
 
     // Searches for all cached listings by owner. Returns a list of listings objects associatd with that user.
-    public Listing[] getListing (User user) {
+    public Listing[] getListings (User user) {
         List<Listing> searchResults = new ArrayList<Listing>();
         if (!_cachedListings.isEmpty() && user != null) {
             for (Listing cachedListing : _cachedListings){
@@ -128,7 +131,7 @@ public class DataAccess {
     public boolean isListingsLoaded() { return _listingsAreLoaded; }
 
     // Reads the users.txt file and creates User objects from the contents, loading them into the cached users list
-    public void loadUsers() throws FileNotFoundException{
+    public void loadUsers() throws IOException{
         File users = new File(this._usersLocation);
         Scanner reader = new Scanner(users);
         while (reader.hasNextLine()){
@@ -143,7 +146,7 @@ public class DataAccess {
 
     // Reads the listings.txt file and creates Listing objects from the contents, loading them into the cached listings list
     // Requires users.txt be loaded already. Throws FileNotFoundException if listings.txt isn't found
-    public void loadListings() throws FileNotFoundException {
+    public void loadListings() throws IOException {
         File listings = new File(this._listingsLocation);
         Scanner reader = new Scanner(listings);
         while (reader.hasNextLine()){
@@ -166,11 +169,29 @@ public class DataAccess {
 
 
     // If a daily transaction file does not exist for today, creates it, otherwise opens it then write the contents of the session log to it, then clears the session log.
-    public void writeDailyTransactionFile() {
-        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dddd");
-        // File transactionFile = _transactionFileLocation + dateFormat.format(new Date());
-        // System.out.println("Writing to file:" + transactionFile.getName());
+    public void writeDailyTransactionFile() throws IOException {
+        File transactionFile = new File(_transactionFileLocation + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd")) + ".log");
 
+        if (!transactionFile.exists())
+            transactionFile.createNewFile();
+
+        FileWriter fileWriter = new FileWriter(transactionFile, true);
+        BufferedWriter buffer = new BufferedWriter(fileWriter);
+
+        for (Log log : _sessionLogs){
+            buffer.write(log.getTransactionCode().toString() + " " +
+                         String.format("%-15s", log.getUsername()) + " " +
+                         log.getUserType().toString() + " " +
+                         log.getRentalUnitID() + " " +
+                         String.format("%-25s", log.getCity()) + " " +
+                         log.getNumberOfRooms() + " " +
+                         (new DecimalFormat("000.00")).format(log.getRentalPrice()) + " " +
+                         String.format("%02d", log.getNightsRented()));
+            buffer.newLine();
+        }
+
+        buffer.close();
+        _sessionLogs.clear();
     }
     
 
