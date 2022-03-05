@@ -135,7 +135,7 @@ public class SearchListing extends State {
             else {
             	//print all listings.
             	for (Listing element: listings) {
-                    System.out.println(element.toString());
+                    System.out.println("---------------\n" + element.toString() + "\n");
             	}
             }
         }
@@ -144,23 +144,6 @@ public class SearchListing extends State {
 			System.out.println("\nAn error occured, could not search listings.");
         }
         
-        // what's this??
-        // while(true) {
-        //     try {
-        //         System.out.print("Search: ");
-        //         String input = inputSource.nextLine();
-        //         if (!dbHandle.userExists(input))
-        //             throw new IllegalArgumentException("User does not exist.");
-        //         if (!User.isValidUsername(input))
-        //             throw new IllegalArgumentException("Invalid username format.");
-        //         if (dbHandle.getUser(input).equals(activeUser.getUsername()))
-        //             throw new IllegalArgumentException("You cannot delete yourself.");
-                
-        //     }
-        //     catch (IllegalArgumentException exception){
-        //         System.out.println(exception.getMessage());
-        //     }
-        // }
     
         return activeUser;
     }

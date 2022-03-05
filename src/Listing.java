@@ -175,7 +175,7 @@ public class Listing {
     
     // For testing purposes
     public String toString() {
-    	return "Unit ID: " + _rentalUnitID + "\nUser: " + String.valueOf(_owner) +
+    	return "Unit ID: " + _rentalUnitID + "\nUser: " + _owner.getUsername() +
     			"\nCity: " + _city + "\nPrice: " + String.valueOf(_rentalPrice) +
     			"\nRooms: " + String.valueOf(_numberOfRooms) + "\nRented: " + String.valueOf(_rentedFlag) + "\nNights: " + String.valueOf(_nightsRented);
     }

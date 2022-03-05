@@ -18,7 +18,7 @@ public class RentListing extends State {
         //TODO: Add log.
         while (listingIDFlag) {
         	try {
-        		System.out.print("\nEnter the ID of the listing you would like to rent");
+        		System.out.print("\nEnter the ID of the listing you would like to rent: ");
         		input = inputSource.nextLine();
         		
         		if(!Listing.isValidRentalID(input)) {
@@ -51,7 +51,7 @@ public class RentListing extends State {
         //Enter how many nights the user will stay
         while(NightsFlag) {
         	try {
-        		System.out.print("\nEnter the number of nights you'll be staying");
+        		System.out.print("\nEnter the number of nights you'll be staying: ");
         		input = inputSource.nextLine();
         		int nightsInput = Integer.parseInt(input);
         		
@@ -60,7 +60,8 @@ public class RentListing extends State {
         		}
         		else {
         			numberOfNights = nightsInput;
-        			totalCost = nightsInput * listing.getRentalPrice();
+        			totalCost = Math.round((nightsInput * listing.getRentalPrice())*100.0)/100.0;
+        			NightsFlag = false;
         		}
         	}
         	catch(Exception e) {
@@ -83,7 +84,7 @@ public class RentListing extends State {
         	try {
         		System.out.print("\nListing ID: " + listing.getRentalUnitID() + "\nNights Rented: " +
         							numberOfNights + "\nCost Per Night: " + listing.getRentalPrice() +
-        							"\nTotal Cost: " + totalCost + "\nEnter yes to confirm or no to cancel?");
+        							"\nTotal Cost: " + totalCost + "\nEnter yes to confirm or no to cancel: ");
         		input = inputSource.nextLine();
         		if(input.equals("yes") || input.equals("Yes") || input.equals("YES") || input.equals("y") || input.equals("Y")) {
         			listing.setNightsRented(numberOfNights);
@@ -102,10 +103,10 @@ public class RentListing extends State {
         	}
         	catch(Exception e) {
         		if(e instanceof IllegalArgumentException) {
-        			System.out.print("\nInvalid Entry. You must enter either yes or no to confirm.");
+        			System.out.print("\nInvalid Entry. You must enter either yes or no to confirm.\n");
         		}
         		else {
-        			System.out.print("\nAn error occured, try again.");
+        			System.out.print("\nAn error occured, try again.\n");
         		}
         	}
         }
