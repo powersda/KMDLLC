@@ -12,6 +12,10 @@ public class SearchListing extends State {
 	// TODO: TEST.
 	
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
+    	// Check user type before declaring variables.
+        if (!Command.SEARCH.validateUser(activeUser))
+                throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
+        
     	String city = null; 
     	String input;
         Double rentalPrice = null;
@@ -21,11 +25,7 @@ public class SearchListing extends State {
     	boolean rentalPriceFlag = true;
     	boolean roomsFlag = true;
     	Listing[] listings; 
-    			
-        if (!Command.SEARCH.validateUser(activeUser))
-                throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
-        
-        
+    	
         //City input and validation
         while(cityFlag) {
         	try {

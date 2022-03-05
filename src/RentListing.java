@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class RentListing extends State {
 
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
+    	// Check user type before declaring variables.
+        if (!Command.RENT.validateUser(activeUser))
+                throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
+
     	String input;
     	Listing listing = null;
     	int numberOfNights = 1; //default 1
@@ -11,11 +15,7 @@ public class RentListing extends State {
     	boolean NightsFlag = true;
     	boolean confirmationFlag = true;
     	
-        if (!Command.RENT.validateUser(activeUser))
-                throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
-
-        //TODO: this is tester must move to a loop that kicks user out of menu if id input is incorrect
-        //TODO: Add log.
+        //TODO: Add logs.
         while (listingIDFlag) {
         	try {
         		System.out.print("\nEnter the ID of the listing you would like to rent: ");
@@ -27,7 +27,7 @@ public class RentListing extends State {
         		else if(dbHandle.listingExists(input)){
         			listing = dbHandle.getListing(input);
         			if(listing.isRented()) {
-        				listingIDFlag = NightsFlag = confirmationFlag = false;
+        				listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
         				System.out.print("\nListing is currently rented. Returning to main menu.\n");
         			}
         			else {
@@ -35,7 +35,7 @@ public class RentListing extends State {
         			}
         		}
         		else {
-        			listingIDFlag = NightsFlag = confirmationFlag = false;
+        			listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
         			System.out.print("\nListing id not found. Returning to main menu.\n");
         		}
         	}
