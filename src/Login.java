@@ -1,15 +1,22 @@
+/*******************************
+* Class: Login
+* Description: Extends the State class to change the active User based on console input
+********************************/
+
 import java.io.IOException;
+import java.lang.IllegalStateException;
 import java.util.Scanner;
 
 public class Login extends State {
 
+    // Implements the execute method from State to set an active User based on console input
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
 
         if (!Command.LOGIN.validateUser(activeUser))
                 throw new SecurityException("Please log out before using the \"" + State.Command.LOGIN + "\" command!");
 
-        // Load users.txt db
-        if (!dbHandle.isUsersLoaded()) {
+        // Load users.txt
+        if (!dbHandle.areUsersLoaded()) {
             try {
                 dbHandle.loadUsers();
             }
@@ -36,17 +43,17 @@ public class Login extends State {
             }
         }
 
-        if (!dbHandle.isListingsLoaded()) {
+        // Load listings.txt
+        if (!dbHandle.areListingsLoaded()) {
             try {
                 dbHandle.loadListings();
             }
-            catch (IOException exception) {
+            catch (IOException | IllegalStateException exception) {
                 System.out.println(exception.getMessage());
                 return activeUser;
             }
         }
 
-        // activeUser = dbHandle.getUser(input);
         System.out.println("\nWelcome " + activeUser.getUsername() + "!\n");
         return activeUser;
     }

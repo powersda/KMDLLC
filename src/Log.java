@@ -1,9 +1,20 @@
+/*******************************
+* Class: Log 
+* Description: Represents a log to be written to the daily transaction file.
+********************************/
+
 public class Log {
+
+    // Enumeration that represents a valid Transaction Code
     public enum TransactionCode {
         END_OF_SESSION("00"), CREATE("01"), DELETE("02"), POST("03"), SEARCH("04"), RENT("05") ;
 
         private String _code;
+
+        // Constructor: creates the enumeration with an appropriate string representation
         private TransactionCode(String code){ this._code = code; }
+
+        // Returns the Transaction Code's string representation
         public String toString() { return _code; }
     }
 
@@ -16,10 +27,12 @@ public class Log {
     private final double _rentalPrice;
     private final int _nightsRented;
 
+    // Constructor: creates a Log without an associated Listing
     public Log(TransactionCode code, User user) {
        this(code, user, null);
     }
 
+    // Constructor: creates a Log from passed Transaction Code, User, and Listing
     public Log(TransactionCode code, User user, Listing listing) {
         if (code == null || user == null)
             throw new IllegalArgumentException();
@@ -44,13 +57,28 @@ public class Log {
         }
     }
 
+    // Returns the Log's Transaction Code
     public TransactionCode getTransactionCode() { return _transactionCode; }
+
+    // Returns the Log's associated username
     public String getUsername() { return _username; }
+
+    // Returns the Log's associated User Type
     public User.UserType getUserType() { return _userType; }
+
+    // Returns the Log's associated rental unit ID
     public String getRentalUnitID() { return _rentalUnitID; }
+
+    // Returns the Log's associated city
     public String getCity() { return _city; }
+
+    // Retuns the Log's associated number of rooms
     public int getNumberOfRooms() { return _numberOfRooms; }
+
+    // Returns the Log's associated rental price
     public double getRentalPrice() { return _rentalPrice; }
+
+    // Returns the Log's associated number of nights 
     public int getNightsRented() { return _nightsRented; }
 }
     
