@@ -28,8 +28,10 @@ public class DeleteUser extends State {
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
         
         Listing[] listings;// = new ArrayList<Listing>();
+        String username = null;
+        boolean usernameFlag = true;
         System.out.println("DEBUG: Running Delete...");
-        while(true) {
+        while(usernameFlag) {
             try {
                 System.out.print("Please enter the user you would like to delete: ");
                 String input = inputSource.nextLine();
@@ -49,14 +51,24 @@ public class DeleteUser extends State {
                     }
                 }
                     
-
-                //dbHandle.removeUser(input);
+                username = input;
+                usernameFlag = false;
             }
             catch (IllegalArgumentException exception){
                 System.out.println(exception.getMessage());
             }
+            
+            try {
+            	dbHandle.removeUser(dbHandle.getUser(username));          
+                new Log(Log.TransactionCode.DELETE, dbHandle.getUser(username));
+                System.out.println("\nUser deleted.\n");
+            }
+            catch(Exception e) {
+            	// Anticipate for any error, let user know this.
+    			System.out.println("\nAn error occured, could not remove user.\n");
+            }
         }
-        //return activeUser;
+        return activeUser;
     }
 }
 

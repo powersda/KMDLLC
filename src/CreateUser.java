@@ -13,7 +13,7 @@ public class CreateUser extends State {
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command");
         
     	String input;
-
+       
         String username = null; 
         User.UserType userType = null;
     	boolean usernameFlag = true;
@@ -41,7 +41,7 @@ public class CreateUser extends State {
 
         while(userTypeFlag){
             try {
-            	System.out.print("\nEnter users usertype: " + Arrays.toString(User.UserType.values()));
+            	System.out.print("\nEnter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
            	 	input = inputSource.nextLine();
            	 	
            	 	if (User.UserType.fromString(input) == null)
@@ -55,16 +55,20 @@ public class CreateUser extends State {
         	}
         }
 
+        User newUser = new User(username, userType);
 
-        // try {
-        // 	dbHandle.addUser(username);
-        // }
-        // catch(Exception e) {
-        // 	// Anticipate for any error, let user know this.
-		// 	System.out.println("\nAn error occured, could not search listings.");
-        // }
+
+        try {
+        	dbHandle.addUser(newUser);          
+            new Log(Log.TransactionCode.CREATE, newUser);
+            System.out.println("\nUser created!");
+        }
+        catch(Exception e) {
+        	// Anticipate for any error, let user know this.
+			System.out.println("\nAn error occured, could not add user.\n");
+        }
                         
-
+        
 
     //Class logic goes here
         return activeUser;

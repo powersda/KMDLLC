@@ -18,8 +18,8 @@ public class PostListing extends State {
         String input;
 
         String city = null; 
-        double rentalPrice;
-        int numberOfRooms;
+        double rentalPrice = 0;
+        int numberOfRooms = 0;
 
     	boolean cityFlag = true;
         boolean rentalPriceFlag = true;
@@ -48,10 +48,13 @@ public class PostListing extends State {
             	System.out.print("\nEnter the price per night for the unit: ");
            	 	input = inputSource.nextLine();
            	 	
-                if(!input.matches("[0-9]"))
-                    throw new IllegalArgumentException("Invalid price, must be numeric.");
+           	 	try {
+           	 		Double.parseDouble(input);
+           	 	}catch(Exception e) {
+           	 		throw new IllegalArgumentException("Invalid price, must be numeric.");
+           	 	}                    
 
-           	 	if (!Listing.isValidRentalPrice(Double.parseDouble( input)))
+           	 	if (!Listing.isValidRentalPrice(Double.parseDouble(input)))
                     throw new IllegalArgumentException("Invalid price per night.");
             	
             	rentalPrice = Double.parseDouble( input);
@@ -67,9 +70,12 @@ public class PostListing extends State {
             	System.out.print("\nEnter number of rooms in the unit: ");
            	 	input = inputSource.nextLine();
            	 	
-                if(!input.matches("[0-9]"))
-                    throw new IllegalArgumentException("Invalid number of rooms, must be numeric.");
 
+                try {
+           	 		Double.parseDouble(input);
+           	 	}catch(Exception e) {
+           	 		throw new IllegalArgumentException("Invalid number of rooms, must be numeric.");
+           	 	}         
            	 	if (!Listing.isValidNumberofRooms(Integer.parseInt(input)))
                     throw new IllegalArgumentException("Invalid number of rooms.");
             	
@@ -81,6 +87,17 @@ public class PostListing extends State {
         	}
         }
        
+        try {
+        	Listing newListing = new Listing(dbHandle, activeUser, city, rentalPrice, numberOfRooms);          
+        	dbHandle.addListing(newListing);
+            new Log(Log.TransactionCode.POST, activeUser, newListing);
+            dbHandle.commitNewListings();
+            System.out.println("\nListing created!");
+        }
+        catch(Exception e) {
+        	// Anticipate for any error, let user know this.
+			System.out.println("\nAn error occured, could not post listing.");
+        }
         
         return activeUser;
     }

@@ -12,7 +12,7 @@ public class User {
         // Use this to list out enum values:
         // System.out.println(Arrays.toString(User.UserType.values()));
             
-        // Takes short-hand user type string and retuns UserType  
+        // Takes short-hand user type string and returns UserType  
         public static UserType fromString(String input){
             for (UserType element : UserType.values()){
                 if (element.toString().equals(input))
@@ -71,7 +71,7 @@ public class User {
     public String getUsername() { return _username; }
     public UserType getUserType() { return _userType; }
 
-    // Checks if username is valid then sets it
+    // Sets username and userType
 
     public User(String username, UserType userType){ 
         // try{
