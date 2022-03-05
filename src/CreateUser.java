@@ -1,4 +1,7 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+
+
 
 public class CreateUser extends State {
 
@@ -36,13 +39,13 @@ public class CreateUser extends State {
 
         while(userTypeFlag){
             try {
-            	System.out.print("\nEnter new username: ");
+            	System.out.print("\nEnter users usertype: " + Arrays.toString(User.UserType.values()));
            	 	input = inputSource.nextLine();
            	 	
-           	 	if (!User.UserType.isValidUserType(input))
+           	 	if (User.UserType.fromString(input) == null)
                     throw new IllegalArgumentException("Invalid user type.");
             	
-                userType = User.UserType.fromStringUserType(input);
+                userType = User.UserType.fromString(input);
             	userTypeFlag = false; // End of while loop
         	}
         	catch (IllegalArgumentException exception){
