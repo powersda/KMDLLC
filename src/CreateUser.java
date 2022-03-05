@@ -26,11 +26,11 @@ public class CreateUser extends State {
             	System.out.print("\nEnter new username: ");
            	 	input = inputSource.nextLine();
            	 	
-           	 	if (dbHandle.userExists(input))
-                    throw new IllegalArgumentException("User already exists.");
+
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
-            	
+           	 	if (dbHandle.userExists(input))
+                    throw new IllegalArgumentException("User already exists.");
             	username = input;
             	usernameFlag = false; // End of while loop
         	}
@@ -60,10 +60,10 @@ public class CreateUser extends State {
 
         try {
         	dbHandle.addUser(newUser);          
-            new Log(Log.TransactionCode.CREATE, newUser);
+        	dbHandle.addLog(new Log(Log.TransactionCode.CREATE, newUser));
             System.out.println("\nUser created!");
         }
-        catch(Exception e) {
+        catch(Exception IOException) {
         	// Anticipate for any error, let user know this.
 			System.out.println("\nAn error occured, could not add user.\n");
         }

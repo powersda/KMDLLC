@@ -35,12 +35,13 @@ public class DeleteUser extends State {
             try {
                 System.out.print("Please enter the user you would like to delete: ");
                 String input = inputSource.nextLine();
-                if (!dbHandle.userExists(input))
-                    throw new IllegalArgumentException("User does not exist.");
+
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
                 if (dbHandle.getUser(input).equals(activeUser.getUsername()))
                     throw new IllegalArgumentException("You cannot delete yourself.");
+                if (!dbHandle.userExists(input))
+                    throw new IllegalArgumentException("User does not exist.");
                 
                 listings = dbHandle.getListings(dbHandle.getUser(input));
                 if (listings != null && listings.length != 0) {
@@ -60,7 +61,7 @@ public class DeleteUser extends State {
             
             try {
             	dbHandle.removeUser(dbHandle.getUser(username));          
-                new Log(Log.TransactionCode.DELETE, dbHandle.getUser(username));
+            	dbHandle.addLog(new Log(Log.TransactionCode.DELETE, dbHandle.getUser(username)));
                 System.out.println("\nUser deleted.\n");
             }
             catch(Exception e) {

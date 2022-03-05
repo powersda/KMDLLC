@@ -12,8 +12,8 @@ public class PostListing extends State {
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
         
         String input;
-
         String city = null; 
+        
         double rentalPrice = 0;
         int numberOfRooms = 0;
 
@@ -45,15 +45,14 @@ public class PostListing extends State {
            	 	input = inputSource.nextLine();
            	 	
            	 	try {
-           	 		Double.parseDouble(input);
-           	 	}catch(Exception e) {
+           	 	rentalPrice = Double.parseDouble(input);
+           	 	}catch(Exception NumberFormatException) {
            	 		throw new IllegalArgumentException("Invalid price, must be numeric.");
            	 	}                    
 
-           	 	if (!Listing.isValidRentalPrice(Double.parseDouble(input)))
+           	 	if (!Listing.isValidRentalPrice(rentalPrice))
                     throw new IllegalArgumentException("Invalid price per night.");
             	
-            	rentalPrice = Double.parseDouble( input);
             	rentalPriceFlag = false; // End of while loop
         	}
         	catch (IllegalArgumentException exception){
@@ -68,14 +67,13 @@ public class PostListing extends State {
            	 	
 
                 try {
-           	 		Double.parseDouble(input);
-           	 	}catch(Exception e) {
+                	numberOfRooms = Integer.parseInt(input);
+           	 	}catch(Exception NumberFormatException) {
            	 		throw new IllegalArgumentException("Invalid number of rooms, must be numeric.");
            	 	}         
-           	 	if (!Listing.isValidNumberofRooms(Integer.parseInt(input)))
+           	 	if (!Listing.isValidNumberofRooms(numberOfRooms))
                     throw new IllegalArgumentException("Invalid number of rooms.");
             	
-            	numberOfRooms = Integer.parseInt(input);
             	numberOfRoomsFlag = false; // End of while loop
         	}
         	catch (IllegalArgumentException exception){
@@ -86,8 +84,7 @@ public class PostListing extends State {
         try {
         	Listing newListing = new Listing(dbHandle, activeUser, city, rentalPrice, numberOfRooms);          
         	dbHandle.addListing(newListing);
-            new Log(Log.TransactionCode.POST, activeUser, newListing);
-            dbHandle.commitNewListings();
+        	dbHandle.addLog(new Log(Log.TransactionCode.POST, activeUser, newListing));
             System.out.println("\nListing created!");
         }
         catch(Exception e) {
