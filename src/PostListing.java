@@ -1,5 +1,5 @@
 /*******************************
-* Class: DeleteUser
+* Class: PostListing
 * Description: Extends the State class to allow for users under specific usertypes to post their rental properties
 ********************************/
 import java.util.Scanner;

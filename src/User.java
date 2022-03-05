@@ -1,5 +1,5 @@
 /*******************************
-* Class: DeleteUser
+* Class: User
 * Description: Extends the State class for use with checking validity and setting usernames and usertypes
 ********************************/
 public class User {
