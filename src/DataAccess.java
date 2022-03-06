@@ -87,8 +87,8 @@ public class DataAccess {
         if (!_cachedListings.isEmpty()) {
             for (Listing cachedListing : _cachedListings){
                 if ((city == null? true : cachedListing.getCity().equals(city)) &&
-                    (rentalPrice == null? true : cachedListing.getRentalPrice() == rentalPrice) &&
-                    (numberOfRooms == null? true : cachedListing.getNumberOfRooms() == numberOfRooms))
+                    (rentalPrice == null? true : cachedListing.getRentalPrice() <= rentalPrice) &&
+                    (numberOfRooms == null? true : cachedListing.getNumberOfRooms() >= numberOfRooms))
                         searchResults.add(cachedListing);
             }
         }
@@ -190,7 +190,7 @@ public class DataAccess {
             buffer.write(log.getTransactionCode().toString() + " " +                                // Transaction Code
                          String.format("%-15s", log.getUsername()) + " " +                          // Username
                          log.getUserType().toString() + " " +                                       // User Type
-                         log.getRentalUnitID() + " " +                                              // Rental Unit ID
+                         String.Format("%-8s", log.getRentalUnitID()) + " " +                                              // Rental Unit ID
                          String.format("%-25s", log.getCity()) + " " +                              // City
                          log.getNumberOfRooms() + " " +                                             // Number of Rooms
                          (new DecimalFormat("000.00")).format(log.getRentalPrice()) + " " +         // Price per night
