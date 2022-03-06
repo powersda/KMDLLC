@@ -5,7 +5,7 @@
 import java.util.Scanner;
 
 public class PostListing extends State {
-
+	// Implements the execute method from State to post a listing
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
 
         if (!Command.POST.validateUser(activeUser))

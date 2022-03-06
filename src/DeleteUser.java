@@ -7,21 +7,8 @@ import java.util.Scanner;
 
 
 public class DeleteUser extends State {
-
-
-    // Search if a user has any open rentals, else return false
-    // public boolean userOpenRentals (String username, DataAccess dbHandle) {
-    //     List<Listing> listings = new ArrayList<Listing>();
-    //     listings = dbHandle.getListing (dbHandle.getUser(username));
-    //     if (listings != null && !listings.isEmpty()) {
-    //         for (Listing listing : listings){
-    //             if (username.equals(listing.getOwner().getUsername()))
-    //                 if (listing.isRented())
-    //                     return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+	
+	// Implements the execute method from State to delete a user and their posts
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
 
         if (!Command.DELETE.validateUser(activeUser))
