@@ -190,7 +190,7 @@ public class DataAccess {
             buffer.write(log.getTransactionCode().toString() + " " +                                // Transaction Code
                          String.format("%-15s", log.getUsername()) + " " +                          // Username
                          log.getUserType().toString() + " " +                                       // User Type
-                         String.Format("%-8s", log.getRentalUnitID()) + " " +                                              // Rental Unit ID
+                         String.format("%-8s", log.getRentalUnitID()) + " " +                                              // Rental Unit ID
                          String.format("%-25s", log.getCity()) + " " +                              // City
                          log.getNumberOfRooms() + " " +                                             // Number of Rooms
                          (new DecimalFormat("000.00")).format(log.getRentalPrice()) + " " +         // Price per night
