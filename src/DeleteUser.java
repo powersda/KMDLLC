@@ -25,7 +25,7 @@ public class DeleteUser extends State {
         while(usernameFlag) {
             try {
                 System.out.print("Please enter the user you would like to delete: ");
-                String input = inputSource.nextLine();
+                String input = inputSource.nextLine().trim().toUpperCase();
 
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");

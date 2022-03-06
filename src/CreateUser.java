@@ -24,7 +24,7 @@ public class CreateUser extends State {
         while(usernameFlag){
             try {
             	System.out.print("\nEnter new username: ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
 
                 if (!User.isValidUsername(input))
@@ -43,7 +43,7 @@ public class CreateUser extends State {
         while(userTypeFlag){
             try {
             	System.out.print("\nEnter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	if (User.UserType.fromString(input) == null)
                     throw new IllegalArgumentException("Invalid user type.");
