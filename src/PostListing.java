@@ -25,7 +25,7 @@ public class PostListing extends State {
         while(cityFlag){
             try {
             	System.out.print("\nEnter the city of the rental unit: ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	if (!Listing.isValidCity(input))
                     throw new IllegalArgumentException("Invalid city name.");
@@ -42,7 +42,7 @@ public class PostListing extends State {
         while(rentalPriceFlag){
             try {
             	System.out.print("\nEnter the price per night for the unit: ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	try {
            	 	rentalPrice = Double.parseDouble(input);
@@ -64,7 +64,7 @@ public class PostListing extends State {
         while(numberOfRoomsFlag){
             try {
             	System.out.print("\nEnter number of rooms in the unit: ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
 
                 try {
