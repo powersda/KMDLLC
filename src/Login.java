@@ -30,7 +30,7 @@ public class Login extends State {
         while(activeUser == null) {
             try {
                 System.out.print("Please enter your username: ");
-                String input = inputSource.nextLine();
+                String input = inputSource.nextLine().trim();
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
                 if (!dbHandle.userExists(input))
