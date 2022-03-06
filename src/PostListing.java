@@ -21,7 +21,7 @@ public class PostListing extends State {
         boolean rentalPriceFlag = true;
     	boolean numberOfRoomsFlag = true;
 
-        // Input a city
+        // Input for a city
         while(cityFlag){
             try {
             	System.out.print("\nEnter the city of the rental unit: ");
@@ -38,7 +38,7 @@ public class PostListing extends State {
         	}
         }
 
-
+        // Input for the rental price 
         while(rentalPriceFlag){
             try {
             	System.out.print("\nEnter the price per night for the unit: ");
@@ -59,7 +59,8 @@ public class PostListing extends State {
         		System.out.println(exception.getMessage());
         	}
         }
-
+        
+        // Input for the numeber of rooms
         while(numberOfRoomsFlag){
             try {
             	System.out.print("\nEnter number of rooms in the unit: ");
@@ -81,6 +82,7 @@ public class PostListing extends State {
         	}
         }
        
+        // Creates the post
         try {
         	Listing newListing = new Listing(dbHandle, activeUser, city, rentalPrice, numberOfRooms);          
         	dbHandle.addListing(newListing);

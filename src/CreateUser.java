@@ -2,7 +2,6 @@
 * Class: CreateUser
 * Description: Extends the State class to allow for the creation of new users
 ********************************/
-import java.io.*;
 import java.util.*;
 
 public class CreateUser extends State {
@@ -38,7 +37,8 @@ public class CreateUser extends State {
         		System.out.println(exception.getMessage());
         	}
         }
-
+        
+        // Input for the new users type
         while(userTypeFlag){
             try {
             	System.out.print("\nEnter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
@@ -57,7 +57,7 @@ public class CreateUser extends State {
 
         User newUser = new User(username, userType);
 
-
+        // Creating the user
         try {
         	dbHandle.addUser(newUser);          
         	dbHandle.addLog(new Log(Log.TransactionCode.CREATE, newUser));
@@ -70,7 +70,6 @@ public class CreateUser extends State {
                         
         
 
-    //Class logic goes here
         return activeUser;
     }
 }

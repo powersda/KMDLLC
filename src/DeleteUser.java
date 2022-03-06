@@ -3,8 +3,8 @@
 * Description: Extends the State class to allow for the deletion of users along with their posts
 ********************************/
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+
+
 
 public class DeleteUser extends State {
 
@@ -28,9 +28,13 @@ public class DeleteUser extends State {
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
         
         Listing[] listings;// = new ArrayList<Listing>();
+
         String username = null;
         boolean usernameFlag = true;
-        System.out.println("DEBUG: Running Delete...");
+        
+        User user;
+        
+        // Input for user to be deleted
         while(usernameFlag) {
             try {
                 System.out.print("Please enter the user you would like to delete: ");
@@ -51,7 +55,8 @@ public class DeleteUser extends State {
                                 throw new IllegalArgumentException("User has an open rental.");
                     }
                 }
-                    
+                //public Listing(String rentalUnitID, User user, String city, double rentalPrice, int numberOfRooms, boolean rentedFlag, int nightsRented) {
+                
                 username = input;
                 usernameFlag = false;
             }
@@ -59,9 +64,13 @@ public class DeleteUser extends State {
                 System.out.println(exception.getMessage());
             }
             
+            // Deleting user and their posts
             try {
-            	dbHandle.removeUser(dbHandle.getUser(username));          
-            	dbHandle.addLog(new Log(Log.TransactionCode.DELETE, dbHandle.getUser(username)));
+            	user = dbHandle.getUser(username);
+            	dbHandle.removeUser(user);          
+            	dbHandle.addLog(new Log(Log.TransactionCode.DELETE, user));
+    			dbHandle.removeListings(dbHandle.getListings(user));	
+
                 System.out.println("\nUser deleted.\n");
             }
             catch(Exception e) {
