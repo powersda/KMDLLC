@@ -1,21 +1,23 @@
+/*******************************
+* Class: SearchListing
+* Description: Handles Search Listing Transactions and validates inputs.
+* 			   Output should display all found listings where rented flag = false or no results found. Once completed it will log transaction
+********************************/
 import java.util.Scanner;
 
+// Extends the State class to allow for users that are active to Search Listings and validate user input.
 public class SearchListing extends State {
 
-    /**
-     *
-     */
-    /**
-     *
-     */
-	// TODO: ADD TRANSACTION LOG and IN LISTINGS DISPLAY, DISPLAY ONLY ITEMS WHICH HAVE RENTED FLAG == FALSE;
+	// TODO: ADD TRANSACTION LOG and IN LISTINGS DISPLAY
 	// TODO: TEST.
 	
+	// Implements the execute method from State to present the Search listings prompts
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
     	// Check user type before declaring variables.
         if (!Command.SEARCH.validateUser(activeUser))
                 throw new SecurityException(activeUser == null? "You must be logged in before you can use this command!" : "Sorry, you don't have permission to use this command.");
         
+        // Default variables set to null to prevent "variable not initialized" error in loops.
     	String city = null; 
     	String input;
         Double rentalPrice = null;
@@ -26,17 +28,20 @@ public class SearchListing extends State {
     	boolean roomsFlag = true;
     	Listing[] listings; 
     	
-        //City input and validation
+        // Validates City input and makes sure the city input is Alphabetic contains "-", 1-25 character inclusive
+    	// Using Listing class isValidCity() method or allows for user to enter * as a wild card to return all listings.
+    	// Does not allow User to move on if input is not correctly entered.
         while(cityFlag) {
         	try {
             	System.out.print("\nEnter the city of the listing: ");
-           	 	input = inputSource.nextLine();
+           	 	input = inputSource.nextLine().trim();
            	 	
            	 	//Checks for wild card
            	 	if(input.equals("*")) {
            	 		input = null;
            	 	}
            	 	else if(!Listing.isValidCity(input)) {
+           	 		// Input was not Alphabetic or contained "-" or 1-25 characters nor was it a *.
             		throw new IllegalArgumentException();
             	}
             	
@@ -55,11 +60,13 @@ public class SearchListing extends State {
         }
         
         
-        //rental price input and validation
+        // Validates rental Price input and makes sure the Rental Price input is numeric and between 1 - 999.99 inclusive.
+        // Also rounds input incase user enters over 2 decimal places as input. Or allows single * input as a wild card.
+        // Does not allow User to move on if input is not correctly entered.
         while(rentalPriceFlag) {
         	try {
-            	System.out.print("\nNote: Prices will be rounded to two decimal places. \nEnter the rental price: ");
-            	input = inputSource.nextLine();
+            	System.out.print("\nNote: Prices will be rounded to two decimal places. \nEnter the maximum rental price per night: ");
+            	input = inputSource.nextLine().trim();
             	//Checks for wild card
         		if(input.equals("*")) {
         			rentalPrice = null;
@@ -77,7 +84,7 @@ public class SearchListing extends State {
             }
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
-        			//refer line 64
+        			//refer line 75
         			System.out.println("\nInvalid Entry. Input must be numberic or try entering \"*\" for all prices");
         		}
         		else if(e instanceof IllegalArgumentException) {
@@ -90,11 +97,13 @@ public class SearchListing extends State {
         	}	
         }
         
-      //rental price input and validation
+        // Validates rental rooms input and makes sure that input is a numeric integer and input between 1 - 9.
+        // or * as a wild card.
+        // Does not allow User to move on if input is not correctly entered.
         while(roomsFlag) {
         	try {
-            	System.out.print("\nEnter the number of bedrooms: ");
-            	input = inputSource.nextLine();
+            	System.out.print("\nEnter the minimum number of bedrooms: ");
+            	input = inputSource.nextLine().trim();
             	//Checks for wild card
         		if(input.equals("*")) {
         			numberOfRooms = null;
@@ -112,7 +121,7 @@ public class SearchListing extends State {
             }
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
-        			// refer to line 99
+        			// refer to line 112
         			System.out.println("\nInvalid Entry. Input must be numberic whole numbers or try entering \"*\" for all number of rooms.");
         		}
         		else if(e instanceof IllegalArgumentException) {
@@ -125,7 +134,11 @@ public class SearchListing extends State {
         	}	
         }
         
-        //print results
+        // Tries to print the results based of user inputs. Using input variables line 137 calls db Handle
+        // to search for listings if not found array should be of lenght 0 and no results prompt should be displayed
+        // if found it will print all listings returned that are not rented.
+        // If there is an error with the db Handle call, it will be catched and displayed as an user friendly error
+        // without crashing the program.
         try {
         	listings = dbHandle.searchListings(city, rentalPrice, numberOfRooms);
         	//Check if search listings couldn't find anything.
@@ -135,7 +148,9 @@ public class SearchListing extends State {
             else {
             	//print all listings.
             	for (Listing element: listings) {
-                    System.out.println("---------------\n" + element.toString() + "\n");
+            		if(!element.isRented()) {
+            			System.out.println("---------------\n" + element.toStringSearch() + "\n");
+            		} 
             	}
             }
         }
