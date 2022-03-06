@@ -109,6 +109,7 @@ public class RentListing extends State {
         		if(input.equals("YES") || input.equals("Y")) {
         			listing.setNightsRented(numberOfNights);
         			listing.setRentedFlag(true);
+        			dbHandle.addLog(new Log(Log.TransactionCode.RENT, activeUser, listing)); // adds log
         			confirmationFlag = false;
         			System.out.print("\nTransaction Confirmed.\n");
         			//TODO: ADD LOG

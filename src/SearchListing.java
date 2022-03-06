@@ -8,8 +8,7 @@ import java.util.Scanner;
 // Extends the State class to allow for users that are active to Search Listings and validate user input.
 public class SearchListing extends State {
 
-	// TODO: ADD TRANSACTION LOG and IN LISTINGS DISPLAY
-	// TODO: TEST.
+	// TODO: TEST and Maybe implement temp listing to record user search input for non existent or existent listing?
 	
 	// Implements the execute method from State to present the Search listings prompts
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
@@ -84,7 +83,7 @@ public class SearchListing extends State {
             }
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
-        			//refer line 75
+        			//refer line 74
         			System.out.println("\nInvalid Entry. Input must be numberic or try entering \"*\" for all prices");
         		}
         		else if(e instanceof IllegalArgumentException) {
@@ -121,7 +120,7 @@ public class SearchListing extends State {
             }
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
-        			// refer to line 112
+        			// refer to line 111
         			System.out.println("\nInvalid Entry. Input must be numberic whole numbers or try entering \"*\" for all number of rooms.");
         		}
         		else if(e instanceof IllegalArgumentException) {
@@ -135,12 +134,16 @@ public class SearchListing extends State {
         }
         
         // Tries to print the results based of user inputs. Using input variables line 137 calls db Handle
-        // to search for listings if not found array should be of lenght 0 and no results prompt should be displayed
+        // to search for listings if not found array should be of length 0 and no results prompt should be displayed
         // if found it will print all listings returned that are not rented.
         // If there is an error with the db Handle call, it will be catched and displayed as an user friendly error
         // without crashing the program.
         try {
         	listings = dbHandle.searchListings(city, rentalPrice, numberOfRooms);
+        	//Listing tempListing = new Listing("        ",activeUser,city,rentalPrice,numberOfRooms,false,0);
+        	
+        	dbHandle.addLog(new Log(Log.TransactionCode.SEARCH, activeUser)); /// add new log.
+        	//tempListing = null;
         	//Check if search listings couldn't find anything.
             if(listings.length == 0) {
             	System.out.println("No Results Found."); 
