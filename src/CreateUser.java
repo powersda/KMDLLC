@@ -6,6 +6,7 @@ import java.util.*;
 
 public class CreateUser extends State {
 
+	// Implements the execute method from State to create a user
     public User execute(User activeUser, DataAccess dbHandle, Scanner inputSource) throws SecurityException {
 
         if (!Command.CREATE.validateUser(activeUser))

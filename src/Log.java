@@ -72,7 +72,7 @@ public class Log {
     // Returns the Log's associated city
     public String getCity() { return _city; }
 
-    // Retuns the Log's associated number of rooms
+    // Returns the Log's associated number of rooms
     public int getNumberOfRooms() { return _numberOfRooms; }
 
     // Returns the Log's associated rental price

@@ -1,6 +1,6 @@
 /*******************************
 * Class: DataAccess
-* Description: Abstracts the reading and writing of input and output data from the program.
+* Description: Handles the program's data by abstracting input and output functionality, providing an interface to access and modify data as needed
 ********************************/
 
 import java.io.File;
@@ -178,7 +178,8 @@ public class DataAccess {
         _listingsAreLoaded = true;
     }
 
-    // If a daily transaction file does not exist for today, creates it, otherwise opens it then writes the contents of the session log to it, then clears the session log.
+    // Appends the session’s Logs to the daily transaction file, then clears the Log list 
+    // If a transaction file does not exist for today, a new file is created with the local date as its name
     public void writeDailyTransactionFile() throws IOException {
         File transactionFile = new File(_transactionFileLocation + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd")) + ".log");
 
