@@ -81,49 +81,43 @@ public class DataAccess {
     }
 
     // Searches the cached Listings for Listings that match the passed city, rental price, and number of rooms, and returns them in a Listing[] array.
-    // Parameters passed as null are equivalent to "any"
+    // A city passed as null is equivalent to "any"
     public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
         List<Listing> searchResults = new ArrayList<Listing>();
         if (!_cachedListings.isEmpty()) {
             for (Listing cachedListing : _cachedListings){
                 if ((city == null? true : cachedListing.getCity().equals(city)) &&
-                    (rentalPrice == null? true : cachedListing.getRentalPrice() <= rentalPrice) &&
-                    (numberOfRooms == null? true : cachedListing.getNumberOfRooms() >= numberOfRooms))
+                    (cachedListing.getRentalPrice() <= rentalPrice) &&
+                    (cachedListing.getNumberOfRooms() >= numberOfRooms))
                         searchResults.add(cachedListing);
             }
         }
         return searchResults.toArray(new Listing[searchResults.size()]);
     }
 
-    // Adds a User to the cached Users list
-    public void addUser (User newUser) { 
-        if (newUser != null && getUser(newUser.getUsername()) == null)
-            this._cachedUsers.add(newUser);
+    // Adds a User to the cached Users list; returns false if the username already exists
+    public boolean addUser (User newUser) { 
+        return (newUser != null && getUser(newUser.getUsername()) == null) ? this._cachedUsers.add(newUser) : false;
     }
 
-    // Adds a Listing to the cached Listings list
-    public void addListing (Listing newListing) { 
-        if (newListing != null && getListing(newListing.getRentalUnitID()) == null)
-            this._newListings.add(newListing);
+    // Adds a Listing to the cached Listings list; returns false if the listing ID already exists
+    public boolean addListing (Listing newListing) { 
+        return (newListing != null && getListing(newListing.getRentalUnitID()) == null) ? this._newListings.add(newListing) : false;
     }
 
-    // Adds a Log to the current session's Log list
-    public void addLog (Log newLog) { this._sessionLogs.add(newLog); }
+    // Adds a Log to the current session's Log list; returns true if the log was added successfully
+    public boolean addLog (Log newLog) { 
+        return newLog != null? this._sessionLogs.add(newLog) : false;
+    }
 
     // Removes passed User object from the cached Users list
-    public void removeUser(User user) {
-        if (user != null)
-            this._cachedUsers.remove(user);
-    }
+    public boolean removeUser(User user) { return this._cachedUsers.remove(user); }
 
     // Removes all Listings in the passed Listing array from the cached Listings
-    public void removeListings(Listing[] listings) {
-        if (listings != null)
-            this._cachedListings.removeAll(Arrays.asList(listings));
-    }
+    public boolean removeListings(Listing[] listings) { return this._cachedListings.removeAll(Arrays.asList(listings)); }
 
     // Adds this session's newly created Listings to the cached Listing list
-    public void commitNewListings () { this._cachedListings.addAll(this._newListings); }
+    public boolean commitNewListings () { return this._cachedListings.addAll(this._newListings); }
 
     // Returns true if a Listing exists in the cached Listings list with the passed rental unit ID, otherwise returns false
     public boolean listingExists(String rentalUnitID) { return this.getListing(rentalUnitID) != null; }
@@ -191,7 +185,7 @@ public class DataAccess {
             buffer.write(log.getTransactionCode().toString() + " " +                                // Transaction Code
                          String.format("%-15s", log.getUsername()) + " " +                          // Username
                          log.getUserType().toString() + " " +                                       // User Type
-                         String.format("%-8s", log.getRentalUnitID()) + " " +                                              // Rental Unit ID
+                         String.format("%-8s", log.getRentalUnitID()) + " " +                       // Rental Unit ID
                          String.format("%-25s", log.getCity()) + " " +                              // City
                          log.getNumberOfRooms() + " " +                                             // Number of Rooms
                          (new DecimalFormat("000.00")).format(log.getRentalPrice()) + " " +         // Price per night
