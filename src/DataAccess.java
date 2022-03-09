@@ -81,12 +81,12 @@ public class DataAccess {
     }
 
     // Searches the cached Listings for Listings that match the passed city, rental price, and number of rooms, and returns them in a Listing[] array.
-    // A city passed as null is equivalent to "any"
-    public Listing[] searchListings (String city,  Double rentalPrice, Integer numberOfRooms) {
+    // A city passed as "*" is equivalent to "any"
+    public Listing[] searchListings (String city,  double rentalPrice, int numberOfRooms) {
         List<Listing> searchResults = new ArrayList<Listing>();
         if (!_cachedListings.isEmpty()) {
             for (Listing cachedListing : _cachedListings){
-                if ((city == null? true : cachedListing.getCity().equals(city)) &&
+                if ((city.equals("*")? true : cachedListing.getCity().equals(city)) &&
                     (cachedListing.getRentalPrice() <= rentalPrice) &&
                     (cachedListing.getNumberOfRooms() >= numberOfRooms))
                         searchResults.add(cachedListing);

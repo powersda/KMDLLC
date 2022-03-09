@@ -32,14 +32,15 @@ public class SearchListing extends State {
     	// Does not allow User to move on if input is not correctly entered.
         while(cityFlag) {
         	try {
-            	System.out.print("\nEnter the city of the listing: ");
+            	System.out.print("Enter the city of the listing: ");
            	 	input = inputSource.nextLine().trim();
            	 	
            	 	//Checks for wild card
-           	 	if(input.equals("*")) {
-           	 		input = null;
-           	 	}
-           	 	else if(!Listing.isValidCity(input)) {
+           	 	// if(input.equals("*")) {
+           	 	// 	input = null;
+           	 	// }
+           	 	// else if(!Listing.isValidCity(input)) {
+           	 	if(!Listing.isValidCity(input) && !input.equals("*")) {
            	 		// Input was not Alphabetic or contained "-" or 1-25 characters nor was it a *.
             		throw new IllegalArgumentException();
             	}
@@ -49,11 +50,11 @@ public class SearchListing extends State {
         	}
         	catch (Exception e){
         		if(e instanceof IllegalArgumentException) {
-        			System.out.println("\nInvalid city format.");
+        			System.out.println("Invalid city format.");
         		}
         		else {
         			// Anticipate for any error, let user know this.
-        			System.out.println("\nAn error occured, try again.");
+        			System.out.println("An error occured, try again.");
         		}
         	}	
         }
@@ -64,11 +65,11 @@ public class SearchListing extends State {
         // Does not allow User to move on if input is not correctly entered.
         while(rentalPriceFlag) {
         	try {
-            	System.out.print("\nNote: Prices will be rounded to two decimal places. \nEnter the maximum rental price per night: ");
+            	System.out.print("Enter the maximum rental price per night: ");
             	input = inputSource.nextLine().trim();
             	//Checks for wild card
         		if(input.equals("*")) {
-        			rentalPrice = null;
+        			rentalPrice = 999.99;
         		}
         		else {
         			// since it's not  a wild card it should not accept anything else than a double
@@ -84,14 +85,14 @@ public class SearchListing extends State {
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
         			//refer line 74
-        			System.out.println("\nInvalid Entry. Input must be numberic or try entering \"*\" for all prices");
+        			System.out.println("Invalid Entry. Input must be numberic or try entering \"*\" for all prices");
         		}
         		else if(e instanceof IllegalArgumentException) {
-        			System.out.println("\nInvalid Entry. Price must be between 1 - 999.99.");
+        			System.out.println("Invalid Entry. Price must be between 1 - 999.99.");
         		}
         		else {
         			// Anticipate for any error, let user know this.
-        			System.out.println("\nAn error occured, try again.");
+        			System.out.println("An error occured, try again.");
         		}
         	}	
         }
@@ -101,11 +102,11 @@ public class SearchListing extends State {
         // Does not allow User to move on if input is not correctly entered.
         while(roomsFlag) {
         	try {
-            	System.out.print("\nEnter the minimum number of bedrooms: ");
+            	System.out.print("Enter the minimum number of bedrooms: ");
             	input = inputSource.nextLine().trim();
             	//Checks for wild card
         		if(input.equals("*")) {
-        			numberOfRooms = null;
+        			numberOfRooms = 1;
         		}
         		else {
         			// since it's not  a wild card it should not accept anything else than an int
@@ -121,14 +122,14 @@ public class SearchListing extends State {
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
         			// refer to line 111
-        			System.out.println("\nInvalid Entry. Input must be numberic whole numbers or try entering \"*\" for all number of rooms.");
+        			System.out.println("Invalid Entry. Input must be numberic whole numbers or try entering \"*\" for all number of rooms.");
         		}
         		else if(e instanceof IllegalArgumentException) {
-        			System.out.println("\nInvalid Entry. Number of Rooms must be between 1 - 9.");
+        			System.out.println("Invalid Entry. Number of Rooms must be between 1 - 9.");
         		}
         		else {
         			// Anticipate for any error, let user know this.
-        			System.out.println("\nAn error occured, try again.");
+        			System.out.println("An error occured, try again.");
         		}
         	}	
         }
@@ -142,7 +143,7 @@ public class SearchListing extends State {
         	listings = dbHandle.searchListings(city, rentalPrice, numberOfRooms);
         	//Listing tempListing = new Listing("        ",activeUser,city,rentalPrice,numberOfRooms,false,0);
         	
-        	dbHandle.addLog(new Log(Log.TransactionCode.SEARCH, activeUser)); /// add new log.
+        	dbHandle.addLog(new Log(Log.TransactionCode.SEARCH, activeUser, new Listing("", activeUser, city, rentalPrice, numberOfRooms, false, 0 ))); /// add new log.
         	//tempListing = null;
         	//Check if search listings couldn't find anything.
             if(listings.length == 0) {
@@ -159,7 +160,7 @@ public class SearchListing extends State {
         }
         catch(Exception e) {
         	// Anticipate for any error, let user know this.
-			System.out.println("\nAn error occured, could not search listings.");
+			System.out.println("An error occured, could not search listings.");
         }
         
     

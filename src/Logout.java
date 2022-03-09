@@ -27,7 +27,7 @@ public class Logout extends State {
             System.out.println(exception.getMessage());
         }
 
-        System.out.println("\nGoodbye!\n");
+        System.out.println("Goodbye!");
         showBanner();
         return null;
     }

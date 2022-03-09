@@ -12,22 +12,13 @@ public class Listing {
     private final int _numberOfRooms;
     private boolean _rentedFlag;
     private int _nightsRented;
+    static private boolean _isFirstListing = true;
     
     // New Listing Constructor. Takes in required input from post listings and generates the rest
-    public Listing(DataAccess dataAccess, User user, String city, double rentalPrice, int numberOfRooms) {
+    public Listing(User user, String city, double rentalPrice, int numberOfRooms) {
     	//will check if unique once dataAccess complete
-    	boolean flag = true;
-    	String generatedID;
     	
-    	//Generates new listing ID and sets it if Listing ID doesn't yet exist
-    	while(flag) {
-    		generatedID = generateUnitID();
-    		if(!(dataAccess.listingExists(generatedID))) {
-    			this._rentalUnitID = generatedID;
-    			flag = false;
-    		}
-    	}
-    	
+        this._rentalUnitID = generateUnitID();
     	this._owner = user;
     	this._city = city;
     	this._rentalPrice = rentalPrice;
@@ -131,9 +122,14 @@ public class Listing {
     
     //Creates a randomly Generated uppercase alphanumeric ID of 8 characters
     private String generateUnitID() {
-    	UUID randomUUID = UUID.randomUUID(); 
-    	String generatedString = (randomUUID.toString().replaceAll("-", "")).toUpperCase();
-    	return generatedString.substring(0, 8);
+        String uid;
+        if (_isFirstListing) {
+            _isFirstListing = false;
+            uid = "AAAAAAAA";
+        }
+        else
+            uid = (UUID.randomUUID().toString().replaceAll("-", "")).substring(0,8).toUpperCase();
+    	return uid;
     }
     
     // Displays Object variables in an user friendly format. Mainly for SearchListings Class.

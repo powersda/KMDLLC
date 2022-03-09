@@ -24,8 +24,8 @@ public class PostListing extends State {
         // Input for a city
         while(cityFlag){
             try {
-            	System.out.print("\nEnter the city of the rental unit: ");
-           	 	input = inputSource.nextLine().trim().toUpperCase();
+            	System.out.print("Enter the city of the rental unit: ");
+           	 	input = inputSource.nextLine().trim();
            	 	
            	 	if (!Listing.isValidCity(input))
                     throw new IllegalArgumentException("Invalid city name.");
@@ -41,7 +41,7 @@ public class PostListing extends State {
         // Input for the rental price 
         while(rentalPriceFlag){
             try {
-            	System.out.print("\nEnter the price per night for the unit: ");
+            	System.out.print("Enter the price per night for the unit: ");
            	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	try {
@@ -63,7 +63,7 @@ public class PostListing extends State {
         // Input for the numeber of rooms
         while(numberOfRoomsFlag){
             try {
-            	System.out.print("\nEnter number of rooms in the unit: ");
+            	System.out.print("Enter number of rooms in the unit: ");
            	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
 
@@ -84,14 +84,18 @@ public class PostListing extends State {
        
         // Creates the post
         try {
-        	Listing newListing = new Listing(dbHandle, activeUser, city, rentalPrice, numberOfRooms);          
+        	Listing newListing = new Listing(activeUser, city, rentalPrice, numberOfRooms);          
+
+            while (dbHandle.addListing(newListing) == false)
+                newListing = new Listing(activeUser, city, rentalPrice, numberOfRooms);
+
         	dbHandle.addListing(newListing);
         	dbHandle.addLog(new Log(Log.TransactionCode.POST, activeUser, newListing));
-            System.out.println("\nListing created!");
+            System.out.println("Listing created!");
         }
         catch(Exception e) {
         	// Anticipate for any error, let user know this.
-			System.out.println("\nAn error occured, could not post listing.");
+			System.out.println("An error occured, could not post listing.");
         }
         
         return activeUser;

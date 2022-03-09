@@ -58,11 +58,11 @@ public class DeleteUser extends State {
             	dbHandle.addLog(new Log(Log.TransactionCode.DELETE, user));
     			dbHandle.removeListings(dbHandle.getListings(user));	
 
-                System.out.println("\nUser deleted.\n");
+                System.out.println("User deleted.");
             }
             catch(Exception e) {
             	// Anticipate for any error, let user know this.
-    			System.out.println("\nAn error occured, could not remove user.\n");
+    			System.out.println("An error occured, could not remove user.");
             }
         }
         return activeUser;

@@ -54,7 +54,7 @@ public class Login extends State {
             }
         }
 
-        System.out.println("\nWelcome " + activeUser.getUsername() + "!\n");
+        System.out.println("Welcome " + activeUser.getUsername() + "!");
         return activeUser;
     }
 }

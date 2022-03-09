@@ -18,13 +18,12 @@ public class CreateUser extends State {
         User.UserType userType = null;
     	boolean usernameFlag = true;
     	boolean userTypeFlag = true;
-        System.out.println("DEBUG: Running Create...");
 
         // Input a new username 
         while(usernameFlag){
             try {
-            	System.out.print("\nEnter new username: ");
-           	 	input = inputSource.nextLine().trim().toUpperCase();
+            	System.out.print("Enter new username: ");
+           	 	input = inputSource.nextLine().trim();
            	 	
 
                 if (!User.isValidUsername(input))
@@ -42,7 +41,7 @@ public class CreateUser extends State {
         // Input for the new users type
         while(userTypeFlag){
             try {
-            	System.out.print("\nEnter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
+            	System.out.print("Enter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
            	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	if (User.UserType.fromString(input) == null)
@@ -62,11 +61,11 @@ public class CreateUser extends State {
         try {
         	dbHandle.addUser(newUser);          
         	dbHandle.addLog(new Log(Log.TransactionCode.CREATE, newUser));
-            System.out.println("\nUser created!");
+            System.out.println("User created!");
         }
         catch(Exception IOException) {
         	// Anticipate for any error, let user know this.
-			System.out.println("\nAn error occured, could not add user.\n");
+			System.out.println("An error occured, could not add user.");
         }
                         
         
