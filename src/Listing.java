@@ -135,15 +135,15 @@ public class Listing {
     // Displays Object variables in an user friendly format. Mainly for SearchListings Class.
     public String toStringSearch() {
     	return "Unit ID: " + _rentalUnitID + "\nRenter: " + _owner.getUsername() +
-    			"\nCity: " + _city + "\nPrice: $" + String.valueOf(_rentalPrice) +
-    			"\nRooms: " + String.valueOf(_numberOfRooms);
+    			"\nCity: " + _city + "\nPrice per night: $" + String.valueOf(_rentalPrice) +
+    			"\nNumber of Bedrooms: " + String.valueOf(_numberOfRooms);
     }
     
     // Displays Object variables in an user friendly format. Mainly for debugging purposes.
     public String toString() {
     	return "Unit ID: " + _rentalUnitID + "\nRenter: " + _owner.getUsername() +
-    			"\nCity: " + _city + "\nPrice: " + String.valueOf(_rentalPrice) +
-    			"\nRooms: " + String.valueOf(_numberOfRooms) + "\nRented: " + String.valueOf(_rentedFlag) + "\nNights: " + String.valueOf(_nightsRented);
+    			"\nCity: " + _city + "\nPrice per night: " + String.valueOf(_rentalPrice) +
+    			"\nNumber of Bedrooms: " + String.valueOf(_numberOfRooms) + "\nRented: " + String.valueOf(_rentedFlag) + "\nNights: " + String.valueOf(_nightsRented);
     }
     
 

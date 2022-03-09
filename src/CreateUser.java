@@ -22,14 +22,14 @@ public class CreateUser extends State {
         // Input a new username 
         while(usernameFlag){
             try {
-            	System.out.print("Enter new username: ");
+            	System.out.print("Enter new user's username: ");
            	 	input = inputSource.nextLine().trim();
            	 	
 
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
            	 	if (dbHandle.userExists(input))
-                    throw new IllegalArgumentException("User already exists.");
+                    throw new IllegalArgumentException("Username already exists.");
             	username = input;
             	usernameFlag = false; // End of while loop
         	}
@@ -41,7 +41,7 @@ public class CreateUser extends State {
         // Input for the new users type
         while(userTypeFlag){
             try {
-            	System.out.print("Enter users usertype " + Arrays.toString(User.UserType.values()) + ": ");
+            	System.out.print("Enter new user's usertype " + Arrays.toString(User.UserType.values()) + ": ");
            	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
            	 	if (User.UserType.fromString(input) == null)

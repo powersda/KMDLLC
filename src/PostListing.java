@@ -63,17 +63,17 @@ public class PostListing extends State {
         // Input for the numeber of rooms
         while(numberOfRoomsFlag){
             try {
-            	System.out.print("Enter number of rooms in the unit: ");
+            	System.out.print("Enter number of bedrooms in the unit: ");
            	 	input = inputSource.nextLine().trim().toUpperCase();
            	 	
 
                 try {
                 	numberOfRooms = Integer.parseInt(input);
            	 	}catch(Exception NumberFormatException) {
-           	 		throw new IllegalArgumentException("Invalid number of rooms, must be numeric.");
+           	 		throw new IllegalArgumentException("Invalid number of bedrooms, must be numeric.");
            	 	}         
            	 	if (!Listing.isValidNumberofRooms(numberOfRooms))
-                    throw new IllegalArgumentException("Invalid number of rooms.");
+                    throw new IllegalArgumentException("Invalid number of bedrooms.");
             	
             	numberOfRoomsFlag = false; // End of while loop
         	}

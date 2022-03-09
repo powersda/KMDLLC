@@ -24,15 +24,15 @@ public class DeleteUser extends State {
         // Input for user to be deleted
         while(usernameFlag) {
             try {
-                System.out.print("Please enter the user you would like to delete: ");
-                String input = inputSource.nextLine().trim().toUpperCase();
+                System.out.print("Please enter the username of the user you would like to delete: ");
+                String input = inputSource.nextLine().trim();
 
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
+                if (!dbHandle.userExists(input))
+                    throw new IllegalArgumentException("Username does not exist.");
                 if (dbHandle.getUser(input).equals(activeUser.getUsername()))
                     throw new IllegalArgumentException("You cannot delete yourself.");
-                if (!dbHandle.userExists(input))
-                    throw new IllegalArgumentException("User does not exist.");
                 
                 listings = dbHandle.getListings(dbHandle.getUser(input));
                 if (listings != null && listings.length != 0) {
@@ -46,24 +46,18 @@ public class DeleteUser extends State {
                 
                 username = input;
                 usernameFlag = false;
+                user = dbHandle.getUser(username);
+                dbHandle.removeUser(user);          
+                dbHandle.addLog(new Log(Log.TransactionCode.DELETE, user));
+                dbHandle.removeListings(dbHandle.getListings(user));	
+
+                System.out.println("User successfully deleted.");
             }
             catch (IllegalArgumentException exception){
                 System.out.println(exception.getMessage());
             }
             
             // Deleting user and their posts
-            try {
-            	user = dbHandle.getUser(username);
-            	dbHandle.removeUser(user);          
-            	dbHandle.addLog(new Log(Log.TransactionCode.DELETE, user));
-    			dbHandle.removeListings(dbHandle.getListings(user));	
-
-                System.out.println("User deleted.");
-            }
-            catch(Exception e) {
-            	// Anticipate for any error, let user know this.
-    			System.out.println("An error occured, could not remove user.");
-            }
         }
         return activeUser;
     }

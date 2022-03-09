@@ -29,7 +29,7 @@ public class RentListing extends State {
     	// Validates Listing ID and makes sure the Listing ID is Alphanumeric, contains exactly 8 characters, exists in the database, and is not rented.
         while (listingIDFlag) {
         	try {
-        		System.out.print("Enter the ID of the listing you would like to rent: ");
+        		System.out.print("Enter the unit ID of the listing you would like to rent: ");
         		input = inputSource.nextLine().trim();
         		
         		// checks if the rental ID is 8 characters alphanumeric
@@ -42,7 +42,7 @@ public class RentListing extends State {
         			// checks that the listing is not rented 
         			if(listing.isRented()) {
         				listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
-        				System.out.println("Listing is currently rented. Returning to main menu.");
+        				System.out.println("Listing is already rented. Returning to main menu.");
         			}
         			else {
         				listingIDFlag = false;
@@ -50,12 +50,12 @@ public class RentListing extends State {
         		}
         		else {
         			listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
-        			System.out.println("Listing id not found. Returning to main menu.");
+        			System.out.println("Unit ID not found. Returning to main menu.");
         		}
         	}
         	catch(Exception e) {
         		if(e instanceof IllegalArgumentException) {
-        			System.out.println("Input Invalid. Listing ID must be alpha numeric and exactly 8 characters.");
+        			System.out.println("Input invalid. Unit ID must be alphanumeric and exactly 8 characters.");
         		}
         		else {
         			System.out.println("An error occured, try again later.");
@@ -83,7 +83,7 @@ public class RentListing extends State {
         	}
         	catch(Exception e) {
         		if(e instanceof NumberFormatException) {
-        			System.out.println("Invalid Entry. Input must be numberic whole numbers.");
+        			System.out.println("Invalid Entry. Input must be an integer amount.");
         		}
         		else if(e instanceof IllegalArgumentException) {
         			System.out.println("Input Entry. You can only rent a listing for 1 - 14 nights.");
@@ -102,8 +102,8 @@ public class RentListing extends State {
         // any other input is incorrect and will prompt the user of error and re-prompt the user to enter confirmation again.
         while(confirmationFlag) {
         	try {
-        		System.out.print("Listing ID: " + listing.getRentalUnitID() + "\nNights Rented: " +
-        							numberOfNights + "\nCost Per Night: $" + listing.getRentalPrice() +
+        		System.out.print("Unit ID: " + listing.getRentalUnitID() + "\nNights Rented: " +
+        							numberOfNights + "\n Price Per Night: $" + listing.getRentalPrice() +
         							"\nTotal Cost: $" + totalCost + "\nEnter yes to confirm or no to cancel: ");
         		input = inputSource.nextLine().trim().toUpperCase(); //Switch to upper case to only check for YES/NO Y/N input.
         		if(input.equals("YES") || input.equals("Y")) {
@@ -111,13 +111,13 @@ public class RentListing extends State {
         			listing.setRentedFlag(true);
         			dbHandle.addLog(new Log(Log.TransactionCode.RENT, activeUser, listing)); // adds log
         			confirmationFlag = false;
-        			System.out.println("Transaction Confirmed.");
+        			System.out.println("Transaction confirmed.");
         			//TODO: ADD LOG
         		}
         		else if(input.equals("NO") || input.equals("N")) {
         			// send user back to main menu.
         			confirmationFlag = false;
-        			System.out.println("Transaction Cancelled.");
+        			System.out.println("Transaction cancelled.");
         		}
         		else {
         			throw new IllegalArgumentException();
@@ -125,7 +125,7 @@ public class RentListing extends State {
         	}
         	catch(Exception e) {
         		if(e instanceof IllegalArgumentException) {
-        			System.out.println("Invalid Entry. You must enter either yes or no to confirm.");
+        			System.out.println("Invalid Entry. You must enter either yes to confirm or no to cancel. ");
         		}
         		else {
         			System.out.println("An error occured, try again.");

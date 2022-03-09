@@ -122,10 +122,10 @@ public class SearchListing extends State {
         	catch (Exception e){
         		if(e instanceof NumberFormatException) {
         			// refer to line 111
-        			System.out.println("Invalid Entry. Input must be numberic whole numbers or try entering \"*\" for all number of rooms.");
+        			System.out.println("Invalid Entry. Input must be an integer, or try entering \"*\" for all number of rooms.");
         		}
         		else if(e instanceof IllegalArgumentException) {
-        			System.out.println("Invalid Entry. Number of Rooms must be between 1 - 9.");
+        			System.out.println("Invalid Entry. Number of bedrooms must be between 1 - 9.");
         		}
         		else {
         			// Anticipate for any error, let user know this.
