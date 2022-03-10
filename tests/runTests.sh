@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-EXE_LOCATION="../OT-Bnb.jar"                                # Location of the OT-Bnb executable, relative to the current script
-TEST_DIR="functionalityTests"                               # Location of units tests relative to current script
-REPORT_DIR="systemTestReports"                              # Location that test reports should be written to relative to current script
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"                 # Directory that the current script resides in 
+EXE_LOCATION="$SCRIPT_DIR""/../OT-Bnb.jar"                  # Location of the OT-Bnb executable, relative to the current script
+TEST_DIR="$SCRIPT_DIR""/functionalityTests"                # Directory containing units tests relative to current script
+REPORT_DIR="$SCRIPT_DIR""/systemTestReports"               # Directory containing test reports to relative to current script
 
 COMMAND_FILE="commands.txt"                                 # Location of test input commands relative to unit test directory
 USERS_FILE="inputs/users.txt"                               # Location of users.txt file relative to unit test directory
 LISTINGS_FILE="inputs/listings.txt"                         # Location of listings.txt file relative to unit test directory
 EXPECTED_OUTPUTS_FILE="expectedOutputs/transactionFile.txt" # Location of expected outputs relative to unit test directory
-TEST_RESULTS_DIR="testResults"                              # Location that unit test results should be written to, relative to unit test directory
+TEST_RESULTS_DIR="testResults"                              # Directory that unit test results should be written to, relative to unit test directory
 
 QUIT_CHAR="q"                                               # Input character required to cancel tests
 RESULTS_SUFFIX="$(date +%Y_%m_%d_%H_%M_%S)"                 # Suffix used for naming report and diff files
