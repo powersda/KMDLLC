@@ -17,3 +17,4 @@ src/User.class
 .classpath
 .project
 /bin/
+*.diff
