@@ -103,7 +103,7 @@ public class RentListing extends State {
         while(confirmationFlag) {
         	try {
         		System.out.print("Unit ID: " + listing.getRentalUnitID() + "\nNights Rented: " +
-        							numberOfNights + "\n Price Per Night: $" + listing.getRentalPrice() +
+        							numberOfNights + "\nPrice Per Night: $" + listing.getRentalPrice() +
         							"\nTotal Cost: $" + totalCost + "\nEnter yes to confirm or no to cancel: ");
         		input = inputSource.nextLine().trim().toUpperCase(); //Switch to upper case to only check for YES/NO Y/N input.
         		if(input.equals("YES") || input.equals("Y")) {

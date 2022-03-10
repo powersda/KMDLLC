@@ -62,20 +62,19 @@ for test in "${tests_to_run[@]}"; do
 
     echo "Running "$test"..."
     java -jar "$EXE_LOCATION" "$test"/ "$test"/"$USERS_FILE" "$test"/"$LISTINGS_FILE" < "$test"/"$COMMAND_FILE" > /dev/null
-    diff -Zay "$test"/*.log "$test"/"$EXPECTED_OUTPUTS_FILE" > $diff_file
+    diff -ZyatW 142 "$test"/*.log "$test"/"$EXPECTED_OUTPUTS_FILE" > $diff_file
     rm "$test"/*.log
     echo "Test results written to "$diff_file"" 
 
     # If the unit test failed, append the diff output to the report file
-    if [ -s "$diff_file" ]; then
-        {   echo -e "Test \""$(basename "$test")"\" failed. Details are as follows (right column is expected output):"
-            cat "$diff_file"
-            echo -e "\n"
-        } >> "$REPORT_FILE"
-    fi
+    {   if [ -s "$diff_file" ]; then
+            echo -e "Test \""$(basename "$test")"\" failed. Details are as follows (right column is expected output):\n""$(cat "$diff_file")""\n"
+        else 
+            echo -e "Test \""$(basename "$test")"\" completed successfully!\n"
+        fi
+    } >> "$REPORT_FILE"
 
 done
 
 # Output an appropriate message to the report file if all tests were successful, and notify user of test completion
-[ ! -s "$REPORT_FILE" ] && echo "All tests passed successfully!" >> "$REPORT_FILE"
 echo -e "\nTests Complete! Report file written to "$REPORT_FILE""
