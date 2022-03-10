@@ -1,8 +1,0 @@
-Test "createPermission" failed. Details are as follows (right column is expected output):
-00 WalterWhite     PS                                    0 00 <
-00 LEVIONGAB       RS                                    0 00 <
-00 PetterWhite     FS                                    0 00 <
-01 Test4           PS                                    0 00	01 Test4           PS                                    0 00
-00 User001         AA                                    0 00 /	00
-
-
