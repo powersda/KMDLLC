@@ -63,7 +63,7 @@ for test in "${tests_to_run[@]}"; do
 
     echo "Running "$test"..."
     java -jar "$EXE_LOCATION" "$test"/ "$test"/"$USERS_FILE" "$test"/"$LISTINGS_FILE" < "$test"/"$COMMAND_FILE" > /dev/null
-    diff -ZyatW 142 "$test"/*.log "$test"/"$EXPECTED_OUTPUTS_FILE" > $diff_file
+    diff -ZyatW 142 --suppress-common-lines "$test"/*.log "$test"/"$EXPECTED_OUTPUTS_FILE" > $diff_file
     rm "$test"/*.log
     echo "Test results written to "$diff_file"" 
 
