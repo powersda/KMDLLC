@@ -1,2 +1,3 @@
-05 LEVIONGAB       RS KX35BMB3                           2 063.00 03
-00
+00 22fixer         PS                                    0 000.00 00
+05 LEVIONGAB       RS KX35BMB3 Ottawa                    2 063.00 03
+00 LEVIONGAB       RS                                    0 000.00 00

@@ -1,2 +1,1 @@
-05 PetterWhite     RS OOAS1345                           3 549.99 03
-00
+00 PetterWhite     FS                                    0 000.00 00

@@ -17,6 +17,7 @@ public class RentListing extends State {
      // Default variables set to null to prevent "variable not initialized" error in loops.
     	String input;
     	Listing listing = null;
+    	String tempOwner = null;
     	int numberOfNights = 1; //default 1
     	double totalCost = 1; // default 1
     	// flags for input checking loops
@@ -24,10 +25,10 @@ public class RentListing extends State {
     	boolean NightsFlag = true;
     	boolean confirmationFlag = true;
     	
-        //TODO: Add logs.
     	
-    	// Validates Listing ID and makes sure the Listing ID is Alphanumeric, contains exactly 8 characters, exists in the database, and is not rented.
+    	// Validates Listing ID and makes sure the Listing ID is Alphanumeric, contains exactly 8 characters, exists in the database, is not owned by current user, and is not rented.
         while (listingIDFlag) {
+        	
         	try {
         		System.out.print("Enter the unit ID of the listing you would like to rent: ");
         		input = inputSource.nextLine().trim();
@@ -39,8 +40,15 @@ public class RentListing extends State {
         		// checks that the listing exists
         		else if(dbHandle.listingExists(input)){
         			listing = dbHandle.getListing(input);
-        			// checks that the listing is not rented 
-        			if(listing.isRented()) {
+        			
+        			// check that listing is not owned by current user.
+        			tempOwner = listing.getOwner().getUsername();
+        			if(tempOwner.equals(activeUser.getUsername())) {
+        				listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
+        				System.out.println("You cannot rent listings owned by you. Returning to main menu.");
+        			}
+        			// checks that the listing is not rented
+        			else if(listing.isRented()) { 
         				listingIDFlag = NightsFlag = confirmationFlag = false; //returns user back to main menu;
         				System.out.println("Listing is already rented. Returning to main menu.");
         			}
@@ -112,7 +120,6 @@ public class RentListing extends State {
         			dbHandle.addLog(new Log(Log.TransactionCode.RENT, activeUser, listing)); // adds log
         			confirmationFlag = false;
         			System.out.println("Transaction confirmed.");
-        			//TODO: ADD LOG
         		}
         		else if(input.equals("NO") || input.equals("N")) {
         			// send user back to main menu.
