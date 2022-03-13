@@ -76,7 +76,7 @@ public class Listing {
     	if((city.length() < 1) || (city.length() > 25)) {
     		return false;
     	}
-    	else if(!city.matches("^[a-zA-Z\u002D]*$")) {
+    	else if(!city.matches("^[a-zA-Z \u002D]*$")) {
     		return false;
     	}
     	else {

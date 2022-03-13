@@ -1,2 +1,2 @@
-03 WalterWhite     PS 81H2B3V2 Detroit                   3 166.99 00
-00
+03 WalterWhite     PS AAAAAAAA Detroit                   3 166.99 00
+00 WalterWhite     PS                                    0 000.00 00

@@ -1,0 +1,135 @@
+Test "createPermission" failed. Details are as follows (right column is expected output):
+00 WalterWhite     PS                                    0 000.00 00  <
+00 LEVIONGAB       RS                                    0 000.00 00  <
+00 PetterWhite     FS                                    0 000.00 00  <
+01 Test4           PS                                    0 000.00 00     01 Test4           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "createUserTypeFormat" failed. Details are as follows (right column is expected output):
+01 Test5           PS                                    0 000.00 00     01 Test5           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "createUsrnmFormat" failed. Details are as follows (right column is expected output):
+01 Test8           PS                                    0 000.00 00     01 Test8           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "createUsrnmUnique" failed. Details are as follows (right column is expected output):
+01 Test9           PS                                    0 000.00 00     01 Test9           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delActiveListings" failed. Details are as follows (right column is expected output):
+02 DELE1           PS                                    0 000.00 00  |  02 DELE8           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delCurrentUser" failed. Details are as follows (right column is expected output):
+02 User001         AA                                    0 000.00 00  |  02 DELE1           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delPermission" failed. Details are as follows (right column is expected output):
+00 VictoriaWashing FS                                    0 000.00 00  <
+00 LEVIONGAB       RS                                    0 000.00 00  <
+00 22fixer         PS                                    0 000.00 00  <
+02 DELE4           PS                                    0 000.00 00     02 DELE4           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delUserTypeAdmin" failed. Details are as follows (right column is expected output):
+02 HockeyLover22   AA                                    0 000.00 00  |  02 DELE1           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delUsrnmFormat" failed. Details are as follows (right column is expected output):
+02 DELE1           PS                                    0 000.00 00     02 DELE1           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "delUsrnmMissing" failed. Details are as follows (right column is expected output):
+02 DELE1           PS                                    0 000.00 00     02 DELE1           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "loginEarlyCmd" failed. Details are as follows (right column is expected output):
+01 TestUser3       PS                                    0 000.00 00     01 TestUser3       PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "loginExistingLogin" failed. Details are as follows (right column is expected output):
+05 LEVIONGAB       RS XIQ1J2B4 Toronto                   3 322.99 02  |  05 LEVIONGAB       PS XIQ1J2B4                           0 322.99 02                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "loginUsrnmFormat" failed. Details are as follows (right column is expected output):
+01 TestUser4       PS                                    0 000.00 00     01 TestUser4       PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "loginUsrnmMissing" failed. Details are as follows (right column is expected output):
+05 LEVIONGAB       RS KX35BMB3 Ottawa                    2 063.00 02  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 02                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "logoutLateCmd" failed. Details are as follows (right column is expected output):
+01 TestUser6       PS                                    0 000.00 00     01 TestUser6       PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "postCityFormat" failed. Details are as follows (right column is expected output):
+03 WalterWhite     PS AAAAAAAA Detroit                   3 166.99 00  |  03 WalterWhite     PS 81H2B3V2 Detroit                   3 166.99 00                                                                         
+00 WalterWhite     PS                                    0 000.00 00  /  00
+
+Test "postPermission" failed. Details are as follows (right column is expected output):
+00 LEVIONGAB       RS                                    0 000.00 00  |  03 WalterWhite     PS B82N12KS Toronto                   1 299.99 00                                                                         
+03 WalterWhite     PS AAAAAAAA Toronto                   1 299.99 00  /  00
+00 WalterWhite     PS                                    0 000.00 00  <
+
+Test "postPriceFormat" failed. Details are as follows (right column is expected output):
+03 WalterWhite     PS AAAAAAAA Ottawa                    2 105.99 00  |  03 WalterWhite     PS 81H2B3V2 Ottawa                    2 105.99 00                                                                         
+00 WalterWhite     PS                                    0 000.00 00  /  00
+
+Test "postRoomsFormat" failed. Details are as follows (right column is expected output):
+03 WalterWhite     PS AAAAAAAA two                       2 022.00 00  |  03 WalterWhite     PS KOL2J1N2 Mexico City               2 082.00 00                                                                         
+00 WalterWhite     PS                                    0 000.00 00  /  00
+
+Test "rentAlreadyRented" failed. Details are as follows (right column is expected output):
+00 LEVIONGAB       RS                                    0 000.00 00  |  05 LEVIONGAB       RS 228AVTU6                           2 349.99 03                                                                         
+                                                                      >  00
+
+Test "rentConfirmation" failed. Details are as follows (right column is expected output):
+00 LEVIONGAB       RS                                    0 000.00 00  |  05 LEVIONGAB       RS 228AVTU6                           2 349.99 03                                                                         
+05 LEVIONGAB       RS 228AVTU6 Paris                     2 349.99 03  /  00
+00 LEVIONGAB       RS                                    0 000.00 00  <
+
+Test "rentDeletedUser" failed. Details are as follows (right column is expected output):
+02 DELE1           PS                                    0 000.00 00     02 DELE1           PS                                    0 000.00 00                                                                         
+00 User001         AA                                    0 000.00 00  |  05 LEVIONGAB       RS 228AVTU6                           2 349.99 03                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "rentListingOwner" failed. Details are as follows (right column is expected output):
+00 PetterWhite     FS                                    0 000.00 00  |  05 PetterWhite     RS OOAS1345                           3 549.99 03                                                                         
+                                                                      >  00
+
+Test "rentNewListing" failed. Details are as follows (right column is expected output):
+03 22fixer         PS AAAAAAAA Montreal                  1 067.33 00  |  03 22fixer         PS U1S19J45 Montreal                  1 067.33 00                                                                         
+00 22fixer         PS                                    0 000.00 00  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 03                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "rentNightsFormat" failed. Details are as follows (right column is expected output):
+05 LEVIONGAB       RS KX35BMB3 Ottawa                    2 063.00 02  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 02                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "rentPermission" failed. Details are as follows (right column is expected output):
+00 22fixer         PS                                    0 000.00 00  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 03                                                                         
+05 LEVIONGAB       RS KX35BMB3 Ottawa                    2 063.00 03  /  00
+00 LEVIONGAB       RS                                    0 000.00 00  <
+
+Test "rentUnitIDFormat" failed. Details are as follows (right column is expected output):
+05 LEVIONGAB       RS KX35BMB3 Ottawa                    2 063.00 03  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 03                                                                         
+00 LEVIONGAB       RS                                    0 000.00 00  /  00
+
+Test "rentUnitIDMissing" failed. Details are as follows (right column is expected output):
+00 LEVIONGAB       RS                                    0 000.00 00  |  05 LEVIONGAB       RS KX35BMB3                           2 063.00 03                                                                         
+                                                                      >  00
+
+Test "srchCityFormat" failed. Details are as follows (right column is expected output):
+04 User001         AA          Paris                     3 549.99 00     04 User001         AA          Paris                     3 549.99 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "srchPriceFormat" failed. Details are as follows (right column is expected output):
+04 User001         AA          Paris                     3 549.99 00     04 User001         AA          Paris                     3 549.99 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+
+Test "srchRoomsFormat" failed. Details are as follows (right column is expected output):
+04 User001         AA          Paris                     3 549.99 00     04 User001         AA          Paris                     3 549.99 00                                                                         
+00 User001         AA                                    0 000.00 00  /  00
+

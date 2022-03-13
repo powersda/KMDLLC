@@ -1,0 +1,62 @@
+Test "createPermission" completed successfully!
+
+Test "createUserTypeFormat" completed successfully!
+
+Test "createUsrnmFormat" completed successfully!
+
+Test "createUsrnmUnique" completed successfully!
+
+Test "delActiveListings" completed successfully!
+
+Test "delCurrentUser" completed successfully!
+
+Test "delPermission" completed successfully!
+
+Test "delUserTypeAdmin" completed successfully!
+
+Test "delUsrnmFormat" completed successfully!
+
+Test "delUsrnmMissing" completed successfully!
+
+Test "loginEarlyCmd" completed successfully!
+
+Test "loginExistingLogin" completed successfully!
+
+Test "loginUsrnmFormat" completed successfully!
+
+Test "loginUsrnmMissing" completed successfully!
+
+Test "logoutLateCmd" completed successfully!
+
+Test "postCityFormat" completed successfully!
+
+Test "postPermission" completed successfully!
+
+Test "postPriceFormat" completed successfully!
+
+Test "postRoomsFormat" completed successfully!
+
+Test "rentAlreadyRented" completed successfully!
+
+Test "rentConfirmation" completed successfully!
+
+Test "rentDeletedUser" completed successfully!
+
+Test "rentListingOwner" completed successfully!
+
+Test "rentNewListing" completed successfully!
+
+Test "rentNightsFormat" completed successfully!
+
+Test "rentPermission" completed successfully!
+
+Test "rentUnitIDFormat" completed successfully!
+
+Test "rentUnitIDMissing" completed successfully!
+
+Test "srchCityFormat" completed successfully!
+
+Test "srchPriceFormat" completed successfully!
+
+Test "srchRoomsFormat" completed successfully!
+

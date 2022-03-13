@@ -29,10 +29,15 @@ public class DeleteUser extends State {
 
                 if (!User.isValidUsername(input))
                     throw new IllegalArgumentException("Invalid username format.");
+                
                 if (!dbHandle.userExists(input))
                     throw new IllegalArgumentException("Username does not exist.");
-                if (dbHandle.getUser(input).equals(activeUser.getUsername()))
+                
+                user = dbHandle.getUser(input);
+                if (user.getUsername().equals(activeUser.getUsername()))
                     throw new IllegalArgumentException("You cannot delete yourself.");
+                if(user.getUserType().equals(User.UserType.ADMIN))
+                	throw new IllegalArgumentException("You cannot delete an Admin.");
                 
                 listings = dbHandle.getListings(dbHandle.getUser(input));
                 if (listings != null && listings.length != 0) {
@@ -46,7 +51,7 @@ public class DeleteUser extends State {
                 
                 username = input;
                 usernameFlag = false;
-                user = dbHandle.getUser(username);
+
                 dbHandle.removeUser(user);          
                 dbHandle.addLog(new Log(Log.TransactionCode.DELETE, user));
                 dbHandle.removeListings(dbHandle.getListings(user));	
