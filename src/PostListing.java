@@ -86,10 +86,9 @@ public class PostListing extends State {
         try {
         	Listing newListing = new Listing(activeUser, city, rentalPrice, numberOfRooms);          
 
-            while (dbHandle.addListing(newListing) == false)
+            while (!dbHandle.addListing(newListing))
                 newListing = new Listing(activeUser, city, rentalPrice, numberOfRooms);
 
-        	dbHandle.addListing(newListing);
         	dbHandle.addLog(new Log(Log.TransactionCode.POST, activeUser, newListing));
             System.out.println("Listing created!");
         }
