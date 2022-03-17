@@ -94,7 +94,7 @@ public class RentListing extends State {
         			System.out.println("Invalid Entry. Input must be an integer amount.");
         		}
         		else if(e instanceof IllegalArgumentException) {
-        			System.out.println("Input Entry. You can only rent a listing for 1 - 14 nights.");
+        			System.out.println("Invalid Entry. You can only rent a listing for 1 - 14 nights.");
         		}
         		else {
         			System.out.println("An error occured, try again later.");

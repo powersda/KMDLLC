@@ -88,7 +88,8 @@ public class DataAccess {
             for (Listing cachedListing : _cachedListings){
                 if ((city.equals("*")? true : cachedListing.getCity().equals(city)) &&
                     (cachedListing.getRentalPrice() <= rentalPrice) &&
-                    (cachedListing.getNumberOfRooms() >= numberOfRooms))
+                    (cachedListing.getNumberOfRooms() >= numberOfRooms) &&
+                    (!cachedListing.isRented()))
                         searchResults.add(cachedListing);
             }
         }
@@ -117,7 +118,11 @@ public class DataAccess {
     public boolean removeListings(Listing[] listings) { return this._cachedListings.removeAll(Arrays.asList(listings)); }
 
     // Adds this session's newly created Listings to the cached Listing list
-    public boolean commitNewListings () { return this._cachedListings.addAll(this._newListings); }
+    public boolean commitNewListings () { 
+        boolean addSuccess = this._cachedListings.addAll(this._newListings);
+        this._newListings.clear();
+        return addSuccess;
+    }
 
     // Returns true if a Listing exists in the cached Listings list with the passed rental unit ID, otherwise returns false
     public boolean listingExists(String rentalUnitID) { return this.getListing(rentalUnitID) != null; }
