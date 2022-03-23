@@ -1,0 +1,2 @@
+javac -cp ../../src/:junit-platform-console-standalone-1.8.2.jar LoginTest.java
+[ "$1" = '-r' ] && java -jar junit-platform-console-standalone-1.8.2.jar -cp ../../src:. -c LoginTest
