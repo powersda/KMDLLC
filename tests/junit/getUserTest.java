@@ -71,10 +71,11 @@ public class getUserTest extends DataAccess {
 
         // Generate User objects to be inserted into cache
         List<User.UserType> userTypes = Arrays.asList(User.UserType.ADMIN, User.UserType.FULL_STANDARD, User.UserType.POST_STANDARD, User.UserType.RENT_STANDARD);
+        String testUserPrefix = "testUser";
         @SuppressWarnings("unchecked") // All objects being added to the List are homogenous, so we can ignore this warning
         List<User> testUsers = new ArrayList();
         for (int i = 0; i < numberOfUsers; ++i) 
-            testUsers.add(new User("testUser" + i, userTypes.get(i % userTypes.size()))); 
+            testUsers.add(new User(testUserPrefix + i, userTypes.get(i % userTypes.size()))); 
 
         // Add User objects to user cache
         for (User user : testUsers)
@@ -91,7 +92,7 @@ public class getUserTest extends DataAccess {
         }
 
         // Search for the last user inserted into the user cache, forcing it to iterate a controlled number of times
-        String targetUsername = "testUser" + (numberOfUsers - 1);
+        String targetUsername = testUserPrefix + (numberOfUsers - 1);
         User foundUser = this.getUser(targetUsername);
 
         // Verify the User object that was returned
