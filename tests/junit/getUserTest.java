@@ -62,18 +62,19 @@ public class getUserTest extends DataAccess {
 
     // Test looping through the user cache to find a specific user. Uses parameterized inputs to test various amounts of loop iteration
     @ParameterizedTest
-    @DisplayName("Decision 1 \"true\" test, Loop 1 loop coverage test, Decision 2 \"true\" and \"false\" test") 
     @ValueSource(ints = { 1, 2, 100 })
+    @DisplayName("Decision 1 \"true\" test, Loop 1 loop coverage test, Decision 2 \"true\" and \"false\" test") 
     public void iterateUsersLoopTest(int numberOfUsers) {
 
         // Make sure that the cache is empty
         assertTrue(this._cachedUsers.isEmpty(), "User cache was not empty before adding User object(s)");
 
         // Generate User objects to be inserted into cache
-        List<User.UserType> userTypes = Arrays.asList(User.UserType.ADMIN, User.UserType.FULL_STANDARD, User.UserType.POST_STANDARD, User.UserType.RENT_STANDARD);
-        String testUserPrefix = "testUser";
         @SuppressWarnings("unchecked") // All objects being added to the List are homogenous, so we can ignore this warning
         List<User> testUsers = new ArrayList();
+        List<User.UserType> userTypes = Arrays.asList(User.UserType.ADMIN, User.UserType.FULL_STANDARD, User.UserType.POST_STANDARD, User.UserType.RENT_STANDARD);
+        String testUserPrefix = "testUser";
+
         for (int i = 0; i < numberOfUsers; ++i) 
             testUsers.add(new User(testUserPrefix + i, userTypes.get(i % userTypes.size()))); 
 
