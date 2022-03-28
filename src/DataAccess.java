@@ -17,15 +17,15 @@ import java.text.DecimalFormat;
 import java.lang.IllegalStateException;
 
 public class DataAccess {
-    private final List<User> _cachedUsers;
-    private final List<Listing> _cachedListings;
-    private final List<Log> _sessionLogs;
-    private final List<Listing> _newListings;
-    private final String _usersLocation;
-    private final String _listingsLocation;
-    private final String _transactionFileLocation;
-    private boolean _listingsAreLoaded;
-    private boolean _usersAreLoaded;
+    protected final List<User> _cachedUsers;
+    protected final List<Listing> _cachedListings;
+    protected final List<Log> _sessionLogs;
+    protected final List<Listing> _newListings;
+    protected final String _usersLocation;
+    protected final String _listingsLocation;
+    protected final String _transactionFileLocation;
+    protected boolean _listingsAreLoaded;
+    protected boolean _usersAreLoaded;
 
     // Default constructor for DataAccess that uses default input and output file locations
     public DataAccess() {
