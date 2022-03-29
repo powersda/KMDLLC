@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.IOException;
 
 public class getUserTest extends DataAccess {
 
