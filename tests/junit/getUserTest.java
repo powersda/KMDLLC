@@ -79,8 +79,7 @@ public class getUserTest extends DataAccess {
             testUsers.add(new User(testUserPrefix + i, userTypes.get(i % userTypes.size()))); 
 
         // Add User objects to user cache
-        for (User user : testUsers)
-            this._cachedUsers.add(user);
+        this._cachedUsers.addAll(testUsers);
 
         // Make sure the user cache is the expected size after adding User object(s)
         assertFalse(this._cachedUsers.isEmpty(), "User cache was empty after adding User object(s)");
