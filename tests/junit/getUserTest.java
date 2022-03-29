@@ -17,8 +17,8 @@
     The loop's 1-iteration test case is tested in iterateUsersLoopTest() with a parameter of 1 (indicating 1 User in the cache)
     The loop's 2-iteration test case is tested in iterateUsersLoopTest() with a parameter of 2 (indicating 2 Users in the cache)
     The loop's many-iteration test case is tested in iterateUsersLoopTest() with a parameter of 100 (indicating 100 Users in the cache)
-    The second decision's "true" branch is implictly tested in the above three loop tests
-    The second decision's "true" branch is implictly tested in iterateUsersLoopTwice() and iterateUsersLoopMany()
+    The second decision's "true" branch is implicitly tested in the above three loop tests
+    The second decision's "false" branch is implicitly tested in iterateUsersLoopTwice() and iterateUsersLoopMany()
 */
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
