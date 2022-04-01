@@ -12,7 +12,7 @@ public class Listing {
     private final int _numberOfRooms;
     private boolean _rentedFlag;
     private int _nightsRented;
-    static private boolean _isFirstListing = true;
+    static public boolean _isFirstListing = true;
     
     // New Listing Constructor. Takes in required input from post listings and generates the rest
     public Listing(User user, String city, double rentalPrice, int numberOfRooms) {

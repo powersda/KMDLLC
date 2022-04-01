@@ -31,43 +31,58 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class generateUnitIDTest {
     Listing listingTest;
     // Creates first listing
     @BeforeEach
-    @DisplayName("Test Initialization: User cache reset")
-    public void createNewInstance() {
-        listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
+    @DisplayName("Test Initialization: Listing value reset")
+    public void createNewInstance(){
+       this.listingTest = null;
     }
 
     // Tests statement coverage for the generateUnitID.
-    @ParameterizedTest
-    @ValueSource(ints = { 1, 2, 100 })
-    @DisplayName("Decision 1 \"true\" test, loop coverage test, Decision 2 \"true\" and \"false\" test") 
-    public void testUnitID(int numberOfListings){
-        // If this is the first listing, the expected output should always be AAAAAAAA
-        // else, the output should be a not null, 8 character, alphanumeric string.
-        if (numberOfListings == 1){
-                assertEquals(listingTest.getRentalUnitID().length(), 8, "UnitID does not equal 8 characters");
-                assertTrue(listingTest.getRentalUnitID().equals("AAAAAAAA"), "First unitID was not AAAAAAAA");
-                assertNotNull(listingTest.getRentalUnitID(), "First unitID was null");
-                assertTrue(listingTest.getRentalUnitID().chars().allMatch(Character::isLetterOrDigit), "First unitID is non-alphanumeric");
-        }else{  
-            for (int i = 0; i < numberOfListings; ++i){
-                listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
-                
-                assertEquals(listingTest.getRentalUnitID().length(), 8, "Next unitID does not equal 8 characters");
-                assertNotNull(listingTest.getRentalUnitID(), "Next unitID was null");
-                assertTrue(listingTest.getRentalUnitID().chars().allMatch(Character::isLetterOrDigit), "Next unitID is non-alphanumeric");
-                //System.out.println(listingTest.getRentalUnitID());
-            }
-        }
+    @Test
+    @DisplayName("Decision 1 \"true\" test, first unitID test") 
+    @Order(1)
+    // This is the first listing, the expected output should always be AAAAAAAA
+    public void testFirstUnitID(){
+        assertTrue(listingTest._isFirstListing, "This is the first listing");
+        assertNull(listingTest, "First unitID is not null");
+        listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
+        assertFalse(listingTest._isFirstListing, "This is not the first listing");
+        assertEquals(listingTest.getRentalUnitID().length(), 8, "UnitID does not equal 8 characters");
+        assertTrue(listingTest.getRentalUnitID().equals("AAAAAAAA"), "First unitID was not AAAAAAAA");
+        assertNotNull(listingTest.getRentalUnitID(), "First unitID was null");
+        assertTrue(listingTest.getRentalUnitID().chars().allMatch(Character::isLetterOrDigit), "First unitID is non-alphanumeric");
     }
+
+
+    @Test
+    @DisplayName("Decision 2 \"true\" test, next unitID test") 
+    @Order(2)
+    // The output should be a not null, 8 character, alphanumeric string.
+    public void testNextUnitID(){
+        assertNull(listingTest, "UnitID should be null");
+        assertFalse(listingTest._isFirstListing, "This is not the first listing");
+        listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
+        assertFalse(listingTest._isFirstListing, "This is still not the first listing");
+        if (!listingTest._isFirstListing)
+            assertFalse(listingTest.getRentalUnitID().equals("AAAAAAAA"), "Next unitID should not be AAAAAAAA (this has a 3.08E-31% chance of being a false negative, congratulations)");
+        assertEquals(listingTest.getRentalUnitID().length(), 8, "Next unitID does not equal 8 characters");
+        assertNotNull(listingTest.getRentalUnitID(), "Next unitID was null");
+        assertTrue(listingTest.getRentalUnitID().chars().allMatch(Character::isLetterOrDigit), "Next unitID is non-alphanumeric");
+    }
+
 
     // Used to create random valid user data for the listings test
     protected User CreateRandomUser() {
