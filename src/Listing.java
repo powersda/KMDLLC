@@ -121,7 +121,7 @@ public class Listing {
     }
     
     //Creates a randomly Generated uppercase alphanumeric ID of 8 characters
-    private String generateUnitID() {
+    public String generateUnitID() {
         String uid;
         if (_isFirstListing) {
             _isFirstListing = false;

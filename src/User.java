@@ -42,8 +42,7 @@ public class User {
     
     // Checks if username string is valid, i.e. is alphabetic, within range, and not null
 
-    public static boolean isValidUsername(String username) { 
-
+    public static boolean isValidUsername(String username) {
         if (username == null){
             return false; 
         }
