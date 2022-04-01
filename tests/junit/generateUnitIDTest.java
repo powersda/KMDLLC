@@ -31,16 +31,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class generateUnitIDTest {
     Listing listingTest;
     // Creates first listing
@@ -48,14 +44,15 @@ public class generateUnitIDTest {
     @DisplayName("Test Initialization: Listing value reset")
     public void createNewInstance(){
        this.listingTest = null;
+       
     }
 
     // Tests statement coverage for the generateUnitID.
     @Test
     @DisplayName("Decision 1 \"true\" test, first unitID test") 
-    @Order(1)
     // This is the first listing, the expected output should always be AAAAAAAA
     public void testFirstUnitID(){
+        listingTest._isFirstListing = true;
         assertTrue(listingTest._isFirstListing, "This is the first listing");
         assertNull(listingTest, "First unitID is not null");
         listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
@@ -69,9 +66,9 @@ public class generateUnitIDTest {
 
     @Test
     @DisplayName("Decision 2 \"true\" test, next unitID test") 
-    @Order(2)
     // The output should be a not null, 8 character, alphanumeric string.
     public void testNextUnitID(){
+        listingTest._isFirstListing = false; // Making it so this is is not the first listing
         assertNull(listingTest, "UnitID should be null");
         assertFalse(listingTest._isFirstListing, "This is not the first listing");
         listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
