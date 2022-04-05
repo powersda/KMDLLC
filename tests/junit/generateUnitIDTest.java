@@ -2,19 +2,31 @@
     The method from Listing being tested with line coverage:
 
     public String generateUnitID() {
-        String uid;
-        if (_isFirstListing) {
-            _isFirstListing = false;
-            uid = "AAAAAAAA";
+    1.  String uid;
+    2.  if (_isFirstListing) {
+    3.      _isFirstListing = false;
+    4.      uid = "AAAAAAAA";
         }
-        else
-            uid = (UUID.randomUUID().toString().replaceAll("-", "")).substring(0,8).toUpperCase();
-    	return uid;
+    5.  else
+    6.        uid = (UUID.randomUUID().toString().replaceAll("-", "")).substring(0,8).toUpperCase();
+    7.	return uid;
     }
+    
+    Lines 1, 2, and 7 are covered by both testFirstUnitID() and testNextUnitID():
+    1. String uid;
+    2. if (_isFirstListing)
+    7. return uid;
 
-    Test testFirstUnitID() covers the statements inside "true"
-    Test testNextUnitID() covers the statements inside "false"  
-     
+    Lines 3 and 4 are covered by testFirstUnitID():
+    3.  _isFirstListing = false;
+    4.  uid = "AAAAAAAA";
+
+    Lines 5 and 6 are covered by testNextUnitID():
+    5. else
+    6. uid = (UUID.randomUUID().toString().replaceAll("-", "")).substring(0,8).toUpperCase();
+
+
+
 */
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
