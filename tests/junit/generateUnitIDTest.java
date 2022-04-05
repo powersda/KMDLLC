@@ -1,24 +1,20 @@
 /*
-    The method from DataAccess being tested with decision and loop coverage, which contains two decisions and one loop:
+    The method from Listing being tested with line coverage:
 
-    public User getUser (String username) {
-        if (!_cachedUsers.isEmpty() && username != null) {
-            for (User cachedUser : _cachedUsers){
-                if (username.equals(cachedUser.getUsername()))
-                    return cachedUser;
-            }
+    public String generateUnitID() {
+        String uid;
+        if (_isFirstListing) {
+            _isFirstListing = false;
+            uid = "AAAAAAAA";
         }
-        return null;
-    } 
+        else
+            uid = (UUID.randomUUID().toString().replaceAll("-", "")).substring(0,8).toUpperCase();
+    	return uid;
+    }
 
-    The first decision's "false" branch is tested in noUsersLoadedTest()
-    The first decision's "true" branch is implicitly tested in all future tests
-    The loop's 0-iteration test case is not possible, since the previous condition statement precludes this state
-    The loop's 1-iteration test case is tested in iterateUsersLoopTest() with a parameter of 1 (indicating 1 User in the cache)
-    The loop's 2-iteration test case is tested in iterateUsersLoopTest() with a parameter of 2 (indicating 2 Users in the cache)
-    The loop's many-iteration test case is tested in iterateUsersLoopTest() with a parameter of 100 (indicating 100 Users in the cache)
-    The second decision's "true" branch is implicitly tested in the above three loop tests
-    The second decision's "false" branch is implicitly tested in iterateUsersLoopTwice() and iterateUsersLoopMany()
+    Test testFirstUnitID() covers the statements inside "true"
+    Test testNextUnitID() covers the statements inside "false"  
+     
 */
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -49,7 +45,7 @@ public class generateUnitIDTest {
 
     // Tests statement coverage for the generateUnitID.
     @Test
-    @DisplayName("Decision 1 \"true\" test, first unitID test") 
+    @DisplayName("Line 1 \"true\" test, first unitID test") 
     // This is the first listing, the expected output should always be AAAAAAAA
     public void testFirstUnitID(){
         listingTest._isFirstListing = true;
@@ -57,15 +53,15 @@ public class generateUnitIDTest {
         assertNull(listingTest, "First unitID is not null");
         listingTest = new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber());
         assertFalse(listingTest._isFirstListing, "This is not the first listing");
+        assertNotNull(listingTest.getRentalUnitID(), "First unitID was null");
         assertEquals(listingTest.getRentalUnitID().length(), 8, "UnitID does not equal 8 characters");
         assertTrue(listingTest.getRentalUnitID().equals("AAAAAAAA"), "First unitID was not AAAAAAAA");
-        assertNotNull(listingTest.getRentalUnitID(), "First unitID was null");
         assertTrue(listingTest.getRentalUnitID().chars().allMatch(Character::isLetterOrDigit), "First unitID is non-alphanumeric");
     }
 
 
     @Test
-    @DisplayName("Decision 2 \"true\" test, next unitID test") 
+    @DisplayName("Line 1 \"false\" test, next unitID test") 
     // The output should be a not null, 8 character, alphanumeric string.
     public void testNextUnitID(){
         listingTest._isFirstListing = false; // Making it so this is is not the first listing
