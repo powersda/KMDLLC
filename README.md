@@ -59,7 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<table>
+<table border="none">
 <thead>
   <tr>
     <td><img src="https://github.com/powersda/KMDLLC/blob/main/images/UML.png?raw=true" alt="UML"></td>
