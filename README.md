@@ -18,7 +18,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/powersda/KMDLLC">
-    <img src="https://raw.githubusercontent.com/powersda/KMDLLC/main/images/logo.png?token=GHSAT0AAAAAABQ4WI6WCGDE4AXWXTS2DKXQYSM3K3Q" alt="Logo" width="384px" height="211px">
+    <img src="https://github.com/powersda/KMDLLC/blob/main/images/logo.png?raw=true" alt="Logo" width="384px" height="211px">
   </a>
 
 <h3 align="center">🛡️ KMD LLC 🛡️</h3>
@@ -59,10 +59,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/UML.png?token=GHSAT0AAAAAABQ4WI6X4643Y7ZCE6ZKDB5YYSM3MYQ)
-[!img]](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/unittest.png?token=GHSAT0AAAAAABQ4WI6X5SAYVN4YUEHSRJNQYSM3PYQ)
+<table outline="none">
+<thead>
+  <tr>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/UML.png?raw=true" alt="UML"></td>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/testsreport.png?raw=true" alt="Black Box Test"></td>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/unittest.png?raw=true" alt="Unit Test"></td>
+  </tr>
+</thead>
+</table>
+
+
 
 
 Given a system requirements by the fictional OT-Bnb (air-bnb like company) we were given the task to design, implement, document and deliver a software product. All phases followed the Kanban development philosophy and practices. 
@@ -167,8 +174,6 @@ Kevin Romero: [https://github.com/KevinCRR](https://github.com/KevinCRR)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
 [issues-shield]: https://img.shields.io/github/issues/powersda/KMDLLC.svg?style=for-the-badge
 [issues-url]: https://github.com/powersda/KMDLLC/issues
 [license-shield]: https://img.shields.io/github/license/powersda/KMDLLC.svg?style=for-the-badge
