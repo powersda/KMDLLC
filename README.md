@@ -8,8 +8,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Issues][issues-shield]][issues-url]
-[![GNU License][license-shield]][license-url]
+[![Documentation: Phase 4](https://github.com/powersda/KMDLLC/tree/main/documentation)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -76,24 +76,36 @@ Given a system requirements by the fictional OT-Bnb (air-bnb like company) we we
 
 Throughout this project we:
 
-• continuously maintained test suites as requirements and quality control
-• pair programed all code
-• used the simplest possible solution to every problem
-• continuously redesigned and re-architected
-• automated testing and integration
-• frequently or continuously released the software Every two weeks (or so) to deliver concrete evidence of our team’s progress as required by project phases.
+* continuously maintained test suites as requirements and quality control
+* pair programed all code
+* used the simplest possible solution to every problem
+* continuously redesigned and re-architected
+* automated testing and integration
+* frequently or continuously released the software Every two weeks (or so) to deliver concrete evidence of our team’s progress as required by project phases.
 
 This project can be broken down into the following phases:
 
-Phase #1 Front End Requirements: Read the software requirements provided, correct any constraints in the documentation with the client, create a plan of the system from the given requirements, and finally  create a set of black box tests from the requirements.
-
+<details>
+  <summary>phases</summary>
+  <ol>
+    <li>
+	Phase #1 Front End Requirements: Read the software requirements provided, correct any constraints in the documentation with the client, create a plan of the system from the given requirements, and finally  create a set of black box tests from the requirements.
+	</li>
+	<li>
 Phase #2 Front End Rapid Prototype: Create the system's prototype using the plan created in phase #1. Find any misconceptions made in the first phase and correct them with future implementations in mind. Create and document the system's architecture. 
-
+</li>
+<li>
 Phase #3 Front End Requirements Testing: Use the black box tests created in the first phase to autonomously test the prototype with bash scripts. Correct any more miscomseptions made in the previous phases for both tests and program functionality. 
-
+</li>
+<li>
 Phase #4  Unit Testing: Using JUnit, create unit tests for two methods within the application, these test implement decision testing and statement coverage. Create a report for the tests.
-
+</li>
+<li>
  Phase #5  Integration and Delivery: With the provided backend, hook it up to the create front-end and test if it works as client specified. 
+</li>
+</ol>
+</details>
+
  
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -158,7 +170,9 @@ Project Link: [https://github.com/powersda/KMDLLC](https://github.com/powersda/K
 
 #### Group Members Github Profiles
 David Powers: [https://github.com/powersda](https://github.com/powersda)
+<br/>
 Mathew Migliore: [https://github.com/Key-Locker](https://github.com/Key-Locker)
+<br/>
 Kevin Romero: [https://github.com/KevinCRR](https://github.com/KevinCRR)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -174,12 +188,6 @@ Kevin Romero: [https://github.com/KevinCRR](https://github.com/KevinCRR)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[issues-shield]: https://img.shields.io/github/issues/powersda/KMDLLC.svg?style=for-the-badge
-[issues-url]: https://github.com/powersda/KMDLLC/issues
-[license-shield]: https://img.shields.io/github/license/powersda/KMDLLC.svg?style=for-the-badge
-[license-url]: https://github.com/powersda/KMDLLC/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 
