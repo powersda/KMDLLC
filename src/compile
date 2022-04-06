@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 javac *.java
 jar -cvmf manifest.mf  ../OT-Bnb.jar *.class
 rm *.class
