@@ -18,7 +18,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/powersda/KMDLLC">
-    <img src="https://raw.githubusercontent.com/powersda/KMDLLC/main/images/logo.png?token=GHSAT0AAAAAABQ4WI6WCGDE4AXWXTS2DKXQYSM3K3Q" alt="Logo" width="384px" height="211px">
+    <img src="https://github.com/powersda/KMDLLC/blob/main/images/logo.png?raw=true" alt="Logo" width="384px" height="211px">
   </a>
 
 <h3 align="center">🛡️ KMD LLC 🛡️</h3>
