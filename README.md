@@ -59,10 +59,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/UML.png?token=GHSAT0AAAAAABQ4WI6X4643Y7ZCE6ZKDB5YYSM3MYQ)
-[!img]](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
-[!img](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/unittest.png?token=GHSAT0AAAAAABQ4WI6X5SAYVN4YUEHSRJNQYSM3PYQ)
+[!img](https://github.com/powersda/KMDLLC/blob/main/images/UML.png?raw=true)
+[!img]](https://github.com/powersda/KMDLLC/blob/main/images/testsreport.png?raw=true)
+[!img](https://github.com/powersda/KMDLLC/blob/main/images/unittest.png?raw=true)
 
 
 Given a system requirements by the fictional OT-Bnb (air-bnb like company) we were given the task to design, implement, document and deliver a software product. All phases followed the Kanban development philosophy and practices. 
