@@ -62,9 +62,9 @@
 <table outline="none">
 <thead>
   <tr>
-    <td><img src="https://github.com/powersda/KMDLLC/blob/main/images/UML.png?raw=true" alt="UML"></td>
-    <td><img src="https://github.com/powersda/KMDLLC/blob/main/images/testsreport.png?raw=true" alt="Black Box Test"></td>
-    <td><img src="https://github.com/powersda/KMDLLC/blob/main/images/unittest.png?raw=true" alt="Unit Test"></td>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/UML.png?raw=true" alt="UML"></td>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/testsreport.png?raw=true" alt="Black Box Test"></td>
+    <td style="border: none!important;"><img src="https://github.com/powersda/KMDLLC/blob/main/images/unittest.png?raw=true" alt="Unit Test"></td>
   </tr>
 </thead>
 </table>
