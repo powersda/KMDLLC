@@ -174,8 +174,6 @@ Kevin Romero: [https://github.com/KevinCRR](https://github.com/KevinCRR)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
 [issues-shield]: https://img.shields.io/github/issues/powersda/KMDLLC.svg?style=for-the-badge
 [issues-url]: https://github.com/powersda/KMDLLC/issues
 [license-shield]: https://img.shields.io/github/license/powersda/KMDLLC.svg?style=for-the-badge
