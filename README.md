@@ -18,7 +18,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/powersda/KMDLLC">
-    <img src="https://raw.githubusercontent.com/powersda/KMDLLC/main/images/logo.png?token=GHSAT0AAAAAABQ4WI6WCGDE4AXWXTS2DKXQYSM3K3Q" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/powersda/KMDLLC/main/images/logo.png?token=GHSAT0AAAAAABQ4WI6WCGDE4AXWXTS2DKXQYSM3K3Q" alt="Logo" width="384px" height="211px">
   </a>
 
 <h3 align="center">🛡️ KMD LLC 🛡️</h3>
@@ -59,7 +59,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/UML.png?token=GHSAT0AAAAAABQ4WI6X4643Y7ZCE6ZKDB5YYSM3MYQ)
+[![Product Name Screen Shot][product-screenshot]](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
+[![Product Name Screen Shot][product-screenshot]](https://raw.githubusercontent.com/powersda/KMDLLC/main/images/testsreport.png?token=GHSAT0AAAAAABQ4WI6XATM5V6FABQ7SU3DAYSM3NDQ)
+
 
 Given a system requirements by the fictional OT-Bnb (air-bnb like company) we were given the task to design, implement, document and deliver a software product. All phases followed the Kanban development philosophy and practices. 
 
