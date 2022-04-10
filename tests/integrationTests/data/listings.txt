@@ -9,4 +9,4 @@ LA1023SJ WalterWhite     Detroit                   1 044.76 F 01
 JK1K234L GordonRamsay    New York                  2 399.99 F 08
 915JKAQK WalterWhite     Albuquerque               3 788.99 F 05
 XIQ1J2B4 DELE1           Toronto                   3 322.99 F 00
-END      
+END
