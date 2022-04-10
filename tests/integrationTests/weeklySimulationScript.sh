@@ -18,7 +18,6 @@ numberOfDays="$([ ! -z "$1" ] && printf "$1" || printf "$DEFAULT_NUM_OF_DAYS")"
 numberOfSessions="$([ ! -z "$2" ] && printf "$2" || printf "$DEFAULT_NUM_OF_SESSIONS")"
 
 printf "\nBeginning integration test: simulating ""$numberOfSessions"" sessions per day for ""$numberOfDays"" days\n"
-echo $SCRIPT_DIR
 
 for day in $(seq 1 "$numberOfDays"); do
     printf "\nSimulating day ""$day""...\n" 

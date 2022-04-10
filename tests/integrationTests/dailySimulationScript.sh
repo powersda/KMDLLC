@@ -148,7 +148,7 @@ for session in $(seq 1 "$numberOfSessions"); do
     # Generate input based on a randomly chosen command
     commandIndex="$(( "$RANDOM" % "${#availableCommands[@]}" ))"
     printf "Generating input for command \"""${availableCommands["$commandIndex"]}""\" as user \"""$(usrPrintUsername "$userIndex")""\" with user type \"""$(usrPrintUsertype "$userIndex")""\"...\n"
-    "${availableCommands["$commandIndex"]}" $userIndex 
+    "${availableCommands["$commandIndex"]}" "$userIndex"
 done
 
 # Feed input to application
