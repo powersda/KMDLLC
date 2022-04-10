@@ -1,3 +1,6 @@
+log/*.log
+tests/systemTestReports/report*.txt
+tests/integrationTests/log/*.log
 .classpath
 .project
 /bin/
