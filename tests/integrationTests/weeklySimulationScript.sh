@@ -32,6 +32,6 @@ for day in $(seq 1 "$numberOfDays"); do
     printf "Backend processing complete. Archiving daily transaction file...\n"
 
     # Change name of daily transaction file so it doesn't conflict with the next day's output
-    mv "$LOG_DIRECTORY""$(date '+%Y_%m_%d')"".log" "$LOG_DIRECTORY""$(date --date=""$(($numberOfDays - $day))" days ago" '+%Y_%m_%d')"".log"  
+    [ ! "$day" -eq "$numberOfDays" ] && mv "$LOG_DIRECTORY""$(date '+%Y_%m_%d')"".log" "$LOG_DIRECTORY""$(date --date=""$(($numberOfDays - $day))" days ago" '+%Y_%m_%d')"".log"  
 done
 
