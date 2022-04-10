@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+javac -cp ../../src/ *.java
+# jar -cvf BackendStub.jar *.class
+# rm *.class
+
+# [ "$1" = '-r' ] && printf '\n' && (cd .. && java -jar OT-Bnb.jar)
+ 

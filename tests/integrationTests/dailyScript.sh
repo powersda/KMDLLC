@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # This script simulates several daily login sessions to produce a valid daily transaction file.
-# A backend executable is then run to process to day's daily transaction and create new input files for the following day
+# A backend executable is then run to process to day's daily transaction and create new input files for 
 # USAGE: ./runDailyScript {number of sessions to simulate, defaults to 15}
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"                 # Directory that the current script resides in 
@@ -10,8 +10,11 @@ USERS_FILE="$SCRIPT_DIR""/data/users.txt"                  # Location of the use
 LISTINGS_FILE="$SCRIPT_DIR""/data/listings.txt"            # Location of the listings.txt file relative tot his scripts
 LOG_DIRECTORY="$SCRIPT_DIR""/log/"                         # Location of the directory to write daily transaction files, relative to this script
 DEFAULT_SESSION_NUM=15                                     # Default number of sessions to run if no argument is passed to this script
+NEW_USER_PREFIX="TEST"                                     # Prefix used when generating new usernames for new users
+NEW_CITY_NAME="TESTCITY"                                   # City name used for new listings 
 
 # Load users.txt
+[ ! -f "$USERS_FILE" ] && printf "users.txt not found!\n" && exit 1
 printf "Reading in users from users.txt...\n"
 readarray users < "$USERS_FILE"
 unset users[-1]
@@ -20,6 +23,7 @@ for user in "${users[@]}"; do
 done
 
 # Load listings.txt
+[ ! -f "$LISTINGS_FILE" ] && printf "listings.txt not found!\n" && exit 1
 printf "\nReading in listings from listings.txt...\n"
 readarray listings < "$LISTINGS_FILE"
 unset listings[-1]
@@ -27,29 +31,29 @@ for listing in "${listings[@]}"; do
     printf "Read in listing: ""$listing"
 done
 
+# Make sure log directory exists
+[ ! -d "$LOG_DIRECTORY" ] && printf "Log directory does not exist!\n" && exit 1
+
 # Functions to retrieve user/listing fields (using xargs to strip whitespace)
-function usrPrintUsername() { printf "${users["$1"]:0:15}" | xargs printf; }
-function usrPrintUsertype() { printf "${users["$1"]:16:2}" | xargs printf; }
-function lstPrintUnitID()   { printf "${listings["$1"]:0:8}" | xargs printf; }
-function lstPrintUsername() { printf "${listings["$1"]:9:15}" | xargs printf; }
-function lstPrintCity()     { printf "${listings["$1"]:25:25}" | xargs printf; }
-function lstPrintPrice()    { printf "${listings["$1"]:53:6}" | xargs printf; }
-function lstPrintRooms()    { printf "${listings["$1"]:51:1}" | xargs printf; }
-function lstPrintRented()   { printf "${listings["$1"]:60:1}" | xargs printf; }
-function lstPrintNights()   { printf "${listings["$1"]:62:2}" | xargs printf; }
+function usrPrintUsername() { printf "${users["$1"]:0:15}" | xargs; }
+function usrPrintUsertype() { printf "${users["$1"]:16:2}" | xargs; }
+function lstPrintUnitID()   { printf "${listings["$1"]:0:8}" | xargs; }
+function lstPrintUsername() { printf "${listings["$1"]:9:15}" | xargs; }
+function lstPrintCity()     { printf "${listings["$1"]:25:25}" | xargs; }
+function lstPrintPrice()    { printf "${listings["$1"]:53:6}" | xargs; }
+function lstPrintRooms()    { printf "${listings["$1"]:51:1}" | xargs; }
+function lstPrintRented()   { printf "${listings["$1"]:60:1}" | xargs; }
+function lstPrintNights()   { printf "${listings["$1"]:62:2}" | xargs; }
 
 # Create input to simulate the creation of a new user
 function create() {
+    # NOTE: new users are not managed by this script, so test input will not be generated with them as the active user
     # Get new user number; if unset then 1, else 1 greater than previous new user number
     [ -z "${newUserNum+set}" ] && newUserNum=1 || let newUserNum++
 
     #  Generate input to create user
-    local newUserPrefix="TEST"
-    input="login\r""$(usrPrintUsername "$1")""\rcreate\r""$newUserPrefix""$newUserNum""\rAA\rlogout\rquit"
-
-    # TODO: add newly created user to internally managed user list so subsequent tests can use them
-
-    printf "Input generated to create new user: \"""$newUserPrefix""$newUserNum""\"!\n"
+    input+="login\r""$(usrPrintUsername "$1")""\rcreate\r""$NEW_USER_PREFIX""$newUserNum""\rAA\rlogout\r"
+    printf "Input generated to create new user: \"""$NEW_USER_PREFIX""$newUserNum""\"!\n"
 }
 
 # Create input to simulate the deletion of an existing user
@@ -77,7 +81,7 @@ function delete() {
     done
     
     # Generate input to delete user
-    input="login\r""$(usrPrintUsername "$1")""\rdelete\r""$(usrPrintUsername "$userIndex")""\rlogout\rquit\r"
+    input+="login\r""$(usrPrintUsername "$1")""\rdelete\r""$(usrPrintUsername "$userIndex")""\rlogout\r"
     printf "Input generated to delete user: \"""$(usrPrintUsername "$userIndex")""\"!\n"
 
     # Remove listings associated with user from internally managed listings array
@@ -91,27 +95,37 @@ function delete() {
     # Remove user from internally managed users array
     unset users["$userIndex"];
     users=( "${users[@]}" )
-
-    printf "$input" | java -jar "$EXE_LOCATION" "$LOG_DIRECTORY" "$USERS_FILE" "$LISTINGS_FILE" > /dev/null
-
 }
+
 function post() {
-
-    local newCityName="TEST"
-
-    input="login\r""$(usrPrintUsername "$1")""\rpost\r""$newCityName""\r""$(( "$RANDOM" % 999 + 1 ))""\r""$(( "$RANDOM" % 9 + 1 ))""\rAA\rlogout\rquit"
-    printf "Input generated to post new listing in city \"""$newCityName""\"!\n" 
-    printf "$input" | java -jar "$EXE_LOCATION" "$LOG_DIRECTORY" "$USERS_FILE" "$LISTINGS_FILE" > /dev/null
+    # Generate input to post a new city with a fixed name, random price, and random number of bedrooms within allowable ranges
+    input+="login\r""$(usrPrintUsername "$1")""\rpost\r""$NEW_CITY_NAME""\r""$(( "$RANDOM" % 999 + 1 ))""\r""$(( "$RANDOM" % 9 + 1 ))""\rlogout\r"
+    printf "Input generated to post new listing in city \"""$NEW_CITY_NAME""\"!\n" 
 }
+
 function search() {
+     # Pick a listing to search for. NOTE: may search for listings that are rented- this is okay!
+     local listingIndex="$(( "$RANDOM" % "${#listings[@]}" ))"
 
-
+     # Generate input to search for all listings in the above city
+     input+="login\r""$(usrPrintUsername "$1")""\rsearch\r""$(lstPrintCity "$listingIndex")""\r*\r*\rlogout\r"
+     printf "Input generated to search for listings in city \"""$(lstPrintCity "$listingIndex")""\"!\n"
 }
-function rent() { echo "rent"; }
+function rent() {
+     # Pick a listing to search for. NOTE: listing may already be rented- this is okay!
+     local listingIndex="$(( "$RANDOM" % "${#listings[@]}" ))"
+
+     # Update internal listings array to reflect rented status (may already be) for delete(). NOTE: number of nights not updated
+     listings["$listingIndex"]="${listings["$listingIndex"]/" F "/" T "}"
+
+     # Generate input to attempt to rent listing at above index
+     input+="login\r""$(usrPrintUsername "$1")""\rrent\r""$(lstPrintUnitID "$listingIndex")""\r""$(( "$RANDOM" % 14 + 1 ))""\ryes\rlogout\r"
+     printf "Input generated to attempt to rent listing \"""$(lstPrintUnitID "$listingIndex")""\"!\n"
+}
 
 # numberOfSessions="$(( "$RANDOM" % ("$MAX_DAILY_SESSIONS" - "$MIN_DAILY_SESSIONS" + 1) + "$MIN_DAILY_SESSIONS" ))"
 [[ "$1" =~ ^[0-9]+$ ]] && numberOfSessions="$1" || numberOfSessions="$DEFAULT_SESSION_NUM"
-printf "\nSimulating ""$numberOfSessions"" sessions...\n"
+printf "\nSimulating input for ""$numberOfSessions"" sessions...\n"
 for session in $(seq 1 "$numberOfSessions"); do
 
     #Pick a random user index, then determine the commands the corresponding user can run
@@ -133,12 +147,15 @@ for session in $(seq 1 "$numberOfSessions"); do
 
     # Generate input based on a randomly chosen command
     commandIndex="$(( "$RANDOM" % "${#availableCommands[@]}" ))"
-    printf "Running command \"""${availableCommands["$commandIndex"]}""\" as user \"""$(usrPrintUsername "$userIndex")""\" with user type \"""$(usrPrintUsertype "$userIndex")""\"...\n"
+    printf "Generating input for command \"""${availableCommands["$commandIndex"]}""\" as user \"""$(usrPrintUsername "$userIndex")""\" with user type \"""$(usrPrintUsertype "$userIndex")""\"...\n"
     "${availableCommands["$commandIndex"]}" $userIndex 
-
-
-    # Feed input to application
-    # printf "$input" | java -jar "$EXE_LOCATION" "$LOG_DIRECTORY" "$USERS_FILE" "$LISTINGS_FILE"
 done
+
+# Feed input to application
+input+="quit\r"
+printf "$input" | java -jar "$EXE_LOCATION" "$LOG_DIRECTORY" "$USERS_FILE" "$LISTINGS_FILE" > /dev/null
+printf "Simulation for ""$numberOfSessions"" session complete!\n"
+exit 0
+
 
 

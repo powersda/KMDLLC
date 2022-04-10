@@ -8,15 +8,15 @@ import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 
-public class createTestData extends DataAccess {
+public class BackendStub {
 		
 	public static void main(String[] args) {
 		Listing generatedListing;
 		int incrementedIndex;
-        String curDir = Paths.get("").toAbsolutePath().getParent().toString();
+        String curDir = Paths.get("data").toAbsolutePath().toString();
         int linesOfData = 100;
         int daysOfData = 1;
-        curDir = curDir.concat("\\data\\");
+        // curDir = curDir.concat("\\data\\");
         File userTextFile = new File(curDir, "users.txt");
         File listingTextFile = new File(curDir, "listings.txt");
 
@@ -56,8 +56,8 @@ public class createTestData extends DataAccess {
 			            System.out.println("File created: " + userTextFile.getName());
 			            System.out.println("File created: " + listingTextFile.getName());
 
-			            FileWriter userWriter = new FileWriter(curDir + userTextFile.getName());
-			            FileWriter listingWriter = new FileWriter(curDir + listingTextFile.getName());
+			            FileWriter userWriter = new FileWriter(userTextFile.getPath());
+			            FileWriter listingWriter = new FileWriter(listingTextFile.getPath());
 			            String formattedListing = "";
 			            String formattedUsers = "";
 			            String endLineListing = "         END                                       0 000.00   00";
