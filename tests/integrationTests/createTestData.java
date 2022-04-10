@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 
-public class createTestData extends DataAccess {
+public class BackendStub extends DataAccess {
 		
 	public static void main(String[] args) {
 		Listing generatedListing;
