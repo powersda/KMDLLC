@@ -60,8 +60,8 @@ public class BackendStub {
 			            FileWriter listingWriter = new FileWriter(listingTextFile.getPath());
 			            String formattedListing = "";
 			            String formattedUsers = "";
-			            String endLineListing = "         END                                       0 000.00   00";
-			            String endLineUser = "END               ";
+			            String endLineListing = "END";
+			            String endLineUser = "END";
 			            String booleanString;
 				        for(int h = 0; h<linesOfData; h++) {
 				        	if (generatedListingList.get(h).isRented() == true) {
