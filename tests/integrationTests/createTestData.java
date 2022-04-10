@@ -8,29 +8,34 @@ import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 
-public class BackendStub extends DataAccess {
+public class createTestData extends DataAccess {
 		
 	public static void main(String[] args) {
 		Listing generatedListing;
 		int incrementedIndex;
         String curDir = Paths.get("").toAbsolutePath().getParent().toString();
-        
-        curDir = curDir.concat("\\data\\generatedData\\");
-        for (int i=0; i<10; i++) {
+        int linesOfData = 100;
+        int daysOfData = 1;
+        curDir = curDir.concat("\\data\\");
+        File userTextFile = new File(curDir, "users.txt");
+        File listingTextFile = new File(curDir, "listings.txt");
+
+        for (int i=0; i<daysOfData; i++) {
         	List<Listing> generatedListingList = new ArrayList<Listing>();
             List<User> generatedUsers = new ArrayList<User>();
 
-            File userTextFile = new File(curDir, "users" + i + ".txt");
-            File listingTextFile = new File(curDir, "listings" + i + ".txt");
+//            File userTextFile = new File(curDir, "users" + i + ".txt");
+//            File listingTextFile = new File(curDir, "listings" + i + ".txt");
+            
 
-	        for (int z=0; z<10; z++) {
+	        for (int z=0; z<linesOfData; z++) {
 	        	if (z==0) {
 	        		generatedUsers.add(CreateRandomAdmin(i));
 	        		generatedListingList.add(new Listing(generatedUsers.get(z), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber()));        	
 	        	}else {
 	        		if(z%2==0) {
 	        			generatedUsers.add(CreateRandomRentUser());
-		        		generatedListingList.add(new Listing(CreateRandomUser(), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber()));
+		        		generatedListingList.add(new Listing(generatedUsers.get(z-1), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber()));
 		        		generatedListingList.get(z).setNightsRented(CreateRandomNightsRented());
 		        		generatedListingList.get(z).setRentedFlag(true);
 		        				        		
@@ -43,8 +48,14 @@ public class BackendStub extends DataAccess {
         	}
 	        
 	        try {	
+	        	userTextFile.delete();
+	        	listingTextFile.delete();
 		        if (userTextFile.createNewFile()) {
+		        		
+		        		
 			            System.out.println("File created: " + userTextFile.getName());
+			            System.out.println("File created: " + listingTextFile.getName());
+
 			            FileWriter userWriter = new FileWriter(curDir + userTextFile.getName());
 			            FileWriter listingWriter = new FileWriter(curDir + listingTextFile.getName());
 			            String formattedListing = "";
@@ -52,7 +63,7 @@ public class BackendStub extends DataAccess {
 			            String endLineListing = "         END                                       0 000.00   00";
 			            String endLineUser = "END               ";
 			            String booleanString;
-				        for(int h = 0; h<10; h++) {
+				        for(int h = 0; h<linesOfData; h++) {
 				        	if (generatedListingList.get(h).isRented() == true) {
 				        		booleanString = "T";
 				        	}else {
