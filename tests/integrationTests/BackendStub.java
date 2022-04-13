@@ -8,6 +8,12 @@ import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 
+/*******************************
+* Class: BackendStub
+* Description: Allows for the creation of randomized listings and users data
+* for the dailySimulationScript & weeklySimulationScript scripts.
+********************************/
+
 public class BackendStub {
 		
 	public static void main(String[] args) {
@@ -16,23 +22,24 @@ public class BackendStub {
         String curDir = Paths.get("data").toAbsolutePath().toString();
         int linesOfData = 100;
         int daysOfData = 1;
-        // curDir = curDir.concat("\\data\\");
         File userTextFile = new File(curDir, "users.txt");
         File listingTextFile = new File(curDir, "listings.txt");
 
+        // Outter forloop which creates x days worth of data and outputs them as files
         for (int i=0; i<daysOfData; i++) {
         	List<Listing> generatedListingList = new ArrayList<Listing>();
-            List<User> generatedUsers = new ArrayList<User>();
+            List<User> generatedUsers = new ArrayList<User>();           
 
-//            File userTextFile = new File(curDir, "users" + i + ".txt");
-//            File listingTextFile = new File(curDir, "listings" + i + ".txt");
-            
-
+            // Inner forloop which creates x listings and users with randomized data
 	        for (int z=0; z<linesOfData; z++) {
+
+                // The first users for each day is an admin with the usersname User00i, with i incrementing per day, and have them create a listing
 	        	if (z==0) {
 	        		generatedUsers.add(CreateRandomAdmin(i));
 	        		generatedListingList.add(new Listing(generatedUsers.get(z), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber()));        	
 	        	}else {
+                    // For every other loop iteration, create a rent-standard user to rent the previous iterations listing,
+                    // else create a user and a listing under that new users name
 	        		if(z%2==0) {
 	        			generatedUsers.add(CreateRandomRentUser());
 		        		generatedListingList.add(new Listing(generatedUsers.get(z-1), CreateRandomCity(), CreateRandomPrice(), CreateRandomRoomNumber()));
@@ -47,12 +54,13 @@ public class BackendStub {
         		}
         	}
 	        
+            // Used to output data per day as text files
 	        try {	
 	        	userTextFile.delete();
 	        	listingTextFile.delete();
+
+                // Checks if the file already exists (should not exist, deleted above)
 		        if (userTextFile.createNewFile()) {
-		        		
-		        		
 			            System.out.println("File created: " + userTextFile.getName());
 			            System.out.println("File created: " + listingTextFile.getName());
 
@@ -63,6 +71,8 @@ public class BackendStub {
 			            String endLineListing = "END";
 			            String endLineUser = "END";
 			            String booleanString;
+
+                        // Forloop to format and output the randomly generated data into a text file
 				        for(int h = 0; h<linesOfData; h++) {
 				        	if (generatedListingList.get(h).isRented() == true) {
 				        		booleanString = "T";
