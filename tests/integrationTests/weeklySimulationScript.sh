@@ -19,7 +19,7 @@ numberOfSessions="$([ ! -z "$2" ] && printf "$2" || printf "$DEFAULT_NUM_OF_SESS
 
 printf "\nBeginning integration test: simulating ""$numberOfSessions"" sessions per day for ""$numberOfDays"" days\n"
 
-for day in $(seq 1 "$numberOfDays"); do
+for day in $(seq "$numberOfDays"); do
     printf "\nSimulating day ""$day""...\n" 
     
     # Run daily script for current day

@@ -126,7 +126,7 @@ function rent() {
 # numberOfSessions="$(( "$RANDOM" % ("$MAX_DAILY_SESSIONS" - "$MIN_DAILY_SESSIONS" + 1) + "$MIN_DAILY_SESSIONS" ))"
 [[ "$1" =~ ^[0-9]+$ ]] && numberOfSessions="$1" || numberOfSessions="$DEFAULT_SESSION_NUM"
 printf "\nSimulating input for ""$numberOfSessions"" sessions...\n"
-for session in $(seq 1 "$numberOfSessions"); do
+for session in $(seq "$numberOfSessions"); do
 
     #Pick a random user index, then determine the commands the corresponding user can run
     userIndex="$(( "$RANDOM" % "${#users[@]}" ))"
