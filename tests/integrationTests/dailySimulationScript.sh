@@ -153,9 +153,9 @@ done
 
 # Feed input to application
 input+="quit\r"
-printf "\nRunning application with generated input\n"
+printf "\nRunning application with generated input...\n"
 printf "$input" | java -jar "$EXE_LOCATION" "$LOG_DIRECTORY" "$USERS_FILE" "$LISTINGS_FILE" > /dev/null
-printf "Simulation for ""$numberOfSessions"" session complete!\n"
+printf "Simulation for ""$numberOfSessions"" sessions complete!\n"
 exit 0
 
 
